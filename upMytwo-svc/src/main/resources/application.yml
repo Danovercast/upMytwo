@@ -1,18 +1,15 @@
 
 #用户中心服务端口
 server:
-  port: 8081
+  port: 8082
 #数据源配置
 spring:
+  #数据库连接配置
   datasource:
-    druid:
-      driver-class-name: com.mysql.jdbc.Driver
-      url: "jdbc:mysql://localhost:3306/com.dabai.mytwo?characterEncoding=utf-8"
-      username: root
-      password: root
-  output:
-    ansi:
-      enabled: always
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/com.dabai.mytwo?characterEncoding=utf-8
+    username: root
+    password: root
 #dubbo配置
 dubbo:
   application:
@@ -25,4 +22,11 @@ dubbo:
     name: dubbo
   registry:
     #zookeeper注册中心地址
-    address: zookeeper://127.0.0.0:2181
+    address: zookeeper://localhost:2181
+#mybatis的相关配置
+mybatis:
+  #mapper配置文件
+  mapper-locations: classpath:com.dabai.dao.*/*.xml
+  #开启驼峰命名
+  configuration:
+    map-underscore-to-camel-case: true
