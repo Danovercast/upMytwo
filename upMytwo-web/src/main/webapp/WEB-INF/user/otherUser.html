@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>用户$userInfo.uname中心</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Google Fonts -->
+
+  <!-- Bootstrap CSS File -->
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+  <!-- Libraries CSS Files -->
+<link href="../_css/font-awesome.min.css" rel="stylesheet">
+  <!-- Main Stylesheet File -->
+  <link href="../css/otheru.css" rel="stylesheet">
+<script src="../js/jquery.js"></script>
+
+</head>
+
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" >
+  <div class="container">
+    <div class="navbar-header">
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <a class="navbar-brand" href="../html/index.html">主页</a>
+        </li>
+      </ul>
+    </div>
+   <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#"></a></li>
+                <li><a href="../html/index.html">首页</a></li>
+                <li><a href="#contact">学习</a></li>
+                <li><a href="#contact">论坛</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="../navbar/">游戏</a></li>
+                <li><a href="../navbar/">交友</a></li>
+                <li><a href="../navbar-static-top/">动漫</a></li>
+                <li class="dropdown">
+                    <a href="#" class="downshow" onmouseover="showMenu()" role="button" aria-haspopup="true"
+                       aria-expanded="false" id="mea"> <span class="caret"></span></a>
+                    <ul class="dropdown-menu" onmouseleave="hideMenu()" id="dropMenu"
+                        style="display: none;">
+                        <li ><a href="#" id="mycenter">个人中心</a></li>
+                        <li><a id="toEdit" href="">修改信息</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">其他</li>
+                        <li><a   id="mycomment">我的评论</a></li>
+                        <li><a href="#" onclick="logOut()">退出登陆</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+  </div>
+</nav>
+  <div class="container">
+
+    <div class="col-lg-12  ">
+
+      <!-- ===== vCard Navigation ===== -->
+      <div class="row w">
+        <div class="col-md-4">
+        #if($userInfo.image)
+          <img class="img-responsive" src="../images/$userInfo.image" alt="">
+          #else
+          <img class="img-responsive" src="../images/$forumInfo.jpg" alt="">
+          #end
+          <ul class="nav nav-tabs nav-stacked" id="myTab">
+            <li class="active"><a href="#about">About</a></li>
+            <li><a href="#profile">Profile</a></li>
+           
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <!-- col-md-4 -->
+
+        <!-- ===== vCard Content ===== -->
+        <div class="col-md-8">
+          <div class="tab-content">
+
+            <!-- ===== First Tab ===== -->
+            <div class="tab-pane active center-block" id="about">
+              <h3>用户:</h3>
+              <h4>$userInfo.uname</h4>
+              <hr>
+               <grey>个人介绍:</grey>
+               <p>
+               #if($userInfo.signature)
+               $userInfo.signature
+               #else
+               用户未设置个人介绍呢
+               #end
+               </p>
+ <grey>性别:</grey>
+ #if($userInfo.gender!=1)
+  女
+  #else
+  男
+  #end
+  <br/>
+            </div>
+            <!-- tab about -->
+
+            <!-- ===== Second Tab ===== -->
+            <div class="tab-pane" id="profile">
+              <h4>用户角色<i class="fa fa-briefcase"></i>$userInfo.rolename </h4>
+              <p class="sm">
+                <grey>用户生日</grey>
+                #if($userInfo.birthday)
+                 $userInfo.birthday
+                 #else
+                 #end
+                 <br/>
+                <grey>用户注册时间</grey> 
+                 #if($userInfo.register)
+                 $userInfo.register
+                 #else
+                 #end
+                $userInfo.register<br/>
+              </p>
+
+              <h4><i class="fa fa-file-text-o"></i>在论坛</h4>
+              <p class="sm">
+                 
+              </p>
+
+              <h4><i class="fa fa-trophy"></i> 身份</h4>
+              <p class="sm">
+                <grey>用户身份</grey> 人类.<br/>
+              </p>
+            </div>
+            <!-- Tab Profile -->
+
+      
+
+            <!-- ===== Fourth Tab ===== -->
+            <div class="tab-pane" id="contact">
+              <h4>添加用户</h4>
+              <hr>
+              <div class="row">
+                <div class="col-xs-6">
+                  <p class="sm">
+                  
+                  </p>
+                </div>
+             
+              </div>
+              <!-- row -->
+              </div>
+              <div>
+                <h4>$userInfo.uname
+                <button type="button" id="yesbutton" class="btn btn-success">该用户是您的好友</button>
+                <button type="button" id="nobutton" class="btn btn-warning">陌生人</button>
+                </h4>
+                
+                <hr>
+                <div id="sendrequestdiv" style=display:none class="contact-form php-mail-form" >
+ 
+                  <div class="form-group">
+                  <input type="hidden" id="theid" value="$userInfo.uid">
+                    <textarea class="form-control" name="message" id="addmessage" placeholder="Your Message" rows="5" data-rule="required" data-msg="Please write something for us"></textarea>
+                    <div class="validate"></div>
+                  </div>
+
+                  <div class="loading"></div>
+                  <div class="form-send">
+                    <button onclick="sendadd()" class="btn btn-large">发送好友申请</button>
+                  </div>
+
+                </div>
+              </div>
+              <!-- row -->
+            </div>
+            <!-- Tab Contact -->
+
+          </div>
+          <!-- Tab Content -->
+        </div>
+        <!-- col-md-8 -->
+      </div>
+      <!-- row w -->
+    </div>
+    <div class="modal fade" id="shouldloginmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">访问用户需要登陆,您的验证信息可能过期,请尝试登陆重试</h4>
+            </div>
+            <div class="modal-body">
+            <div class="form-group"  >
+                         <input type="text" class="form-control" placeholder=" username" id="uname"
+               autofocus  value=""><div style="color: #FF3333"><b id="loginfailedinfo">请输入用户密码 </b></div>
+        <input type="password" class="form-control" id="password"   placeholder="Password" >
+			
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="submitlogin()">login</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+    <!-- col-lg-6 -->
+    <!-- 回显信息 -->
+	<div class="modal fade" id="sendrequest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" 
+						aria-hidden="true">×
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					发送结果
+				</h4>
+			</div>
+			<div class="modal-body" id="sendInfo">
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" 
+						data-dismiss="modal">关闭
+				</button>
+				<a href="#" type="button" class="btn btn-primary" id="refresh" target="_blank">
+					刷新查看
+				</a>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+	<!-- 回显信息 -->
+  </div>
+  <!-- /.container -->
+
+
+
+<script src="../js/bootstrap.min.js"></script>
+  <script src="../js/userinfo.js"></script>
+  <script src="../js/otheruser.js">
+</script>
+</body>
+</html>

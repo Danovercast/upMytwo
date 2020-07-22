@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>聊天</title>
+
+<link href="https://fonts.googleapis.com/css" rel="stylesheet">
+<link rel="stylesheet" href="../css/reset.min.css">
+<link rel="stylesheet" href="../css/chatstyle.css">
+
+</head>
+<body>
+
+<div class="wrapper">
+	<div class="container">
+        <div class="left">
+            <div class="top">
+                <input type="text" placeholder="Search" />
+                <a href="javascript:;" class="search"></a>
+            </div>
+            <ul class="people">
+                <li class="person" data-chat="person1">
+                    <img src="../images/20190223010313_fzPVF.jpeg" alt="" />
+                    <span class="name">大白</span>
+                    <span class="time">昨天</span>
+                    <span class="preview">wondering...</span>
+                </li>
+                
+            </ul>
+        </div>
+        <div class="right">
+            <div class="top"><span>To: <span class="name">大白</span></span></div>
+            <div class="chat" data-chat="person1">
+                <div class="conversation-start">
+                    <span>昨天</span>
+                </div>
+                <div class="bubble you">
+                    Hello,
+                </div>
+                <div class="bubble you">
+                    it's me.
+                </div>
+                <div class="bubble you">
+                    I was wondering...
+                </div>
+            </div>
+            <div class="chat" data-chat="person2">
+                <div class="conversation-start">
+                    <span>昨天</span>
+                </div>
+                
+                <div class="bubble you">
+                    在？借钱
+                </div>
+                <div class="bubble me">
+                   聊天功能尚未开放
+                </div>
+             
+            </div>
+           
+            <div class="write">
+                <a href="javascript:;" class="write-link attach"></a>
+                <input type="text" />
+                <a href="javascript:;" class="write-link smiley"></a>
+                <a href="javascript:;" class="write-link send"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script  src="../js/chat.js"></script>
+
+<div style="text-align:center;margin:1px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+</div>
+</body>
+</html>

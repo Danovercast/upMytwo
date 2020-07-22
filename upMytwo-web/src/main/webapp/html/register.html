@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>注册</title>
+  <link rel="stylesheet" href="../css/amazeui.min.css">
+  <link rel="stylesheet" href="../css/app.css">
+  <script src="../js/jquery-3.3.1.min.js"></script>
+  <script src="../js/form.js"></script>
+</head>
+<body style="background-image: url(../i/f10.jpg)">
+<header>
+<button
+        id="info"
+        type="button"
+        class="am-btn am-btn-primary am-hide"
+        data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 400, height: 225}">
+  Modal
+</button>
+
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">注册结果
+      <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+    </div>
+    <div class="am-modal-bd" id="registerresult">
+      :
+    </div>
+    <div class="am-modal-footer-hd">
+     <button class="am-btn-lg am-btn-success"  id="know" data-am-modal-close >知道了</button>
+      <a href="login.html" class="am-btn-lg am-btn-success  "  style="display:none;width:100%;height:100px" id="gologin">去登陆</a>
+    </div>
+  </div>
+</div>
+  <div class="log-re">
+    <a href="login.html" type="button" class="am-btn am-btn-default am-radius log-button">登 录</a>
+  </div>
+</header>
+
+<div class="log am-text-center">
+  <div class="am-u-lg-3 am-u-md-6 am-u-sm-8 am-u-sm-centered ">
+    <h1 class="log-title am-animation-slide-top">欢迎注册</h1>
+    <br>
+    <form class="am-form" id="log-form" action="../base/register" method="post">
+      <div class="am-form-group  am-input-group am-radius am-animation-slide-right  am-text-center ">
+        <h3 class="">性别(性别不填默认是男)</h3>
+        <label class="am-radio-inline">
+          <input type="radio" name="gender" value="1" data-am-ucheck> 男
+        </label>
+        <label class="am-radio-inline">
+          <input type="radio" name="gender" value="2" data-am-ucheck> 女
+        </label>
+        <span class="am-input-group-label log-icon am-radius"><i class="am-icon-lock am-icon-sm am-icon-fw"></i></span>
+        <span class="am-form-caret"></span>
+      </div>
+      <br>
+      <div class="am-input-group am-radius am-animation-slide-left">       
+        <input type="email" id="doc-vld-email-2-1" name="email" class="am-radius" data-validation-message="请输入正确邮箱地址,以激活您的账号" placeholder="邮箱" required/>
+        <span class="am-input-group-label log-icon am-radius"><i class="am-icon-user am-icon-sm am-icon-fw"></i></span>
+      </div>
+      <br>
+      <div class="am-input-group am-animation-slide-left log-animation-delay " id="doc-vld-ajax">       
+        <input type="text" name="username" id="doc-vld-name-2-1" class="am-form-field am-radius log-input js-ajax-validate" placeholder="用户名" minlength="2" required>
+        <span class="am-input-group-label log-icon am-radius"><i class="am-icon-pencil am-icon-sm am-icon-fw"></i></span>
+      </div>
+      <br>   
+      <div class="am-input-group am-animation-slide-left log-animation-delay-a">       
+        <input type="password" name="password" id="log-password"  class="am-form-field am-radius log-input" placeholder="输入密码" data-validation-message="密码" required>
+        <span class="am-input-group-label log-icon am-radius"><i class="am-icon-lock am-icon-sm am-icon-fw"></i></span>
+      </div>
+      <br>
+      <div class="am-input-group am-animation-slide-left log-animation-delay-a">
+        <input type="password"  id="log-password2" data-equal-to="#log-password" class="am-form-field am-radius log-input" placeholder="确认密码" data-validation-message="请确认密码一致" required>
+        <span class="am-input-group-label log-icon am-radius"><i class="am-icon-lock am-icon-sm am-icon-fw"></i></span>
+      </div>
+      <br>
+
+      <div class="am-input-group am-animation-slide-left log-animation-delay-a">
+        <input type="text" name="telephone"   class="am-form-field am-radius log-input js-pattern-mobile" placeholder="telephone" data-validation-message="输入电话" >
+        <span class="am-input-group-label log-icon am-radius"><i class="am-icon-unlock am-icon-sm am-icon-fw"></i></span>
+      </div>
+      <br>
+      <div class="am-input-group am-animation-slide-left log-animation-delay-a">
+        <input type="text" name="birthday"   class="am-form-field am-radius log-input" placeholder="生日" data-am-datepicker data-validation-message="请输入日期" required>
+        <span class="am-input-group-label log-icon am-radius"><i class="am-icon-birthday-cake am-icon-sm am-icon-fw"></i></span>
+      </div>
+      <br>
+
+      <div class="am-form-group ">
+        <label for="doc-select-1-1">选择您的学院</label>
+        <select id="doc-select-1-1" name="institution_id"  required>
+        </select>
+        <span class="am-input-group-label log-icon am-radius"><i class="am-icon-lock am-icon-sm am-icon-fw"></i></span>
+        <span class="am-form-caret"></span>
+      </div>
+      <div class="am-input-group am-animation-slide-left log-animation-delay-a">
+        <h3 class="">选择您的身份</h3>
+        <label class="am-radio-inline">
+          <input type="radio"  value="0" data-am-ucheck> 人类
+        </label>
+        <label class="am-radio-inline">
+          <input type="radio"  value="1" data-am-ucheck> 神仙
+        </label>
+        <label class="am-radio-inline">
+          <input type="radio"  value="2" data-am-ucheck> 妖怪
+        </label>
+        <label class="am-radio-inline">
+          <input type="radio" value="3" data-am-ucheck> 魔鬼
+        </label>
+        <span class="am-input-group-label log-icon am-radius"><i class="am-icon-lock am-icon-sm am-icon-fw"></i></span>
+        <span class="am-form-caret"></span>
+      </div>
+    </form>
+       <br>
+      <button  onclick="submitForm()" class="am-btn am-btn-primary am-btn-block am-btn-lg am-radius am-animation-slide-bottom log-animation-delay-b">注 册</button>
+      <br>
+      <div class="am-btn-group am-animation-slide-bottom log-animation-delay-b">
+      <p>游客登陆</p>
+      <a href="#" class="am-btn am-btn-secondary am-btn-sm"><i class="am-icon-github am-icon-sm"></i>随便看看</a>
+      </div>
+  </div>
+  <footer class="footer">
+    © 2019  大白
+  </footer>
+</div>
+
+<script>
+    $(function() {
+        $('#doc-vld-ajax').validator({
+            validate: function(validity) {
+                var v = $(validity.field).val();
+
+                var comparer = function(v1, v2) {
+                    if (v1 === v2) {
+                        validity.valid = false;
+                    }
+
+                    // 这些属性目前 v2.3 以前没什么用，如果不想写可以忽略
+                    // 从 v2.3 开始，这些属性被 getValidationMessage() 用于生成错误提示信息
+                    if (v1==="true") {
+                        validity.rangeUnderflow = true;
+                    } else  {
+                        validity.rangeOverflow = false;
+                       
+                    }
+                };
+
+                // Ajax 验证
+                if ($(validity.field).is('.js-ajax-validate')) {
+                    // 异步操作必须返回 Deferred 对象
+                    return $.ajax({
+                        url: 'base/checkUsername',
+                        data:{"username":v},
+                        // cache: false, 实际使用中请禁用缓存
+                        dataType: 'json'
+                    }).then(function(data) {
+                        comparer(data.result,"no");
+                        if(data.result=="no"){
+                        	 $("#doc-vld-ajax").append("<div class='log-alert am-alert am-alert-danger am-radius'>用户名已存在</div>");
+                        }
+                        return validity;
+                    }, function() {
+                        return validity;
+                    });
+                }
+
+
+            }
+        });
+    });
+    window.onload=function(){
+    	findInstitution();
+    }
+    function findInstitution(){
+    	var currentpage=1;
+    	var pagesize=20;
+    	var pageinfo=JSON.stringify({"currentpage":currentpage,"pagesize":pagesize});
+    	console.log(pageinfo);	
+		$.ajax({
+			type:'post',
+			url:'../base/institutionList',
+			dataType:'json',
+			contentType:'application/json;charset=utf-8',
+			data:pageinfo,
+			success:function(data){
+				 for(var i=0;i<data.length;i++){
+					$('#doc-select-1-1').append("<option value='"+data[i].institution_id+"'>"+data[i].institution_name+"</option>");
+					console.log(data);
+				 }
+			}
+		})
+	}
+    function submitForm(){
+    	console.log($('input[name=gender]').val());
+    	$('#log-form').ajaxSubmit(function(data){
+    		 if(data.code===3){
+    			 $('#info').click();
+         		$('#registerresult').html(data.msg)
+    		 }else{
+    			 $('#info').click();
+    			 document.getElementById("know").style.display='none';
+    			 document.getElementById("gologin").style.display='block';
+         		$('#registerresult').html(data.msg)
+    		 }
+    		return false
+    	})
+    }
+</script>
+
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="../js/amazeui.ie8polyfill.min.js"></script>
+<script src="../js/amazeui.min.js"></script>
+
+<script src="../js/app.js"></script>
+</body>
+</html>

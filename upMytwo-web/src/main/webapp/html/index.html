@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
+    <title>index</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" >
+    <link rel="stylesheet" href="../css/amazeui.min.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <!-- using online links -->
+    
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" >
+
+
+    <script src="../js/jquery.js"></script>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/sidebar-themes.css">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+    <style>
+    a{
+    	cursor:pointer;
+    }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div class="page-wrapper default-theme sidebar-bg bg1 light-theme toggled">
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content" >
+                <!-- sidebar-brand  -->
+                <div class="sidebar-item sidebar-brand">
+                    <a href="#">WELOCME</a>
+                </div>
+                <!-- sidebar-header  -->
+                <div class="sidebar-item sidebar-header d-flex flex-nowrap">
+                    <div class="">
+                        <img class="img-responsive img-rounded" id="headerImg"  src="../images/$forumInfo.jpg" alt="User picture">
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">
+                            <strong id="username1">佚名</strong>
+                        </span>
+                        <span>
+                        	<strong id="signature">
+                        		 掐指一算,没有登陆
+                        	</strong>
+                        	
+                        </span>
+                        <span id="shouldhide" class="user-status">是否验证
+                            <i class="fa fa-circle "></i>
+                            
+                            <span>Yes</span>
+                        </span>
+                        <span id="shouldshow" class="  am-danger">
+                        	是否验证
+                        <i class="fa fa-circle "></i>
+                         <span>no</span>
+                        </span>
+                        <span id="managershow"  style=color:white;display:none class="user-status">
+                              <a   class="am-btn am-btn-primary  am-topbar-btn am-btn-sm"  href="../manager/backUser">后台</a>
+                   
+                        </span>
+                    </div>
+                </div>
+                <!-- sidebar-search  -->
+                <div class="sidebar-item sidebar-search">
+                    <div>
+                        <div class="input-group">
+                             
+                           
+                        </div>
+                    </div>
+                </div>
+                <!-- sidebar-menu  -->
+                <div  id="loginuserinfo" class=" sidebar-item sidebar-menu" style=display:none>
+                    <ul>
+                        <li class="header-menu">
+                            <span>General</span>
+                        </li>
+                        <li class="sidebar-dropdown" >
+                            <a href="#">
+                                <i class="fa fa-tachometer-alt"></i>
+                                <span class="menu-text">我的</span>
+                                <span class="badge badge-pill badge-warning">New</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="#" id="siberHome">个人中心
+                                            <span class="badge badge-pill badge-success">Pro</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="mycomment">我的发布</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="toEdit">修改信息</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-people"></i>
+                                <span  >我的好友</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="#" id="myfriend">friend
+
+                                        </a>
+                                    </li>
+                                  
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="far fa fa-book"></i>
+                                <span class="menu-pencil">我的随笔</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="#">General</a>
+                                    </li>
+                                  
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-chart-line"></i>
+                                <span class="menu-text">聊天</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="#" id="mychart">chart</a>
+                                    </li>
+                            
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="header-menu">
+                            <span>其他</span>
+                        </li>
+                        
+                        <li>
+                            <a id="myins" href="#">
+                                <i class="fa fa-globe"></i>
+                                <span class="menu-text">学院一</span>
+                            </a>
+                        </li>
+                        
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-folder"></i>
+                                <span class="menu-text">学院列表</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul name="insul">
+                                  
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="siberlogin" class=" sidebar-item sidebar-menu">
+               <div class="am-input-group am-input-group-primary">
+  <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+  <input id="thatname" type="text" class="am-form-field" placeholder="用户名" autofocus>
+</div>
+<hr>
+<span class="am-text-danger" id="loginthatinfo"></span>
+<div class="am-input-group am-input-group-danger">
+  <span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
+  <input id="thatpasswd" type="password" class="am-form-field" placeholder="Password">
+</div>
+<div type="button" onclick="loginthat()"  class="btn btn-info btn-lg center-block text-center">login</div>
+                </div>
+                <!-- sidebar-menu  -->
+            </div>
+            <!-- sidebar-footer  -->
+            <div class="sidebar-footer">
+                <div class="dropdown">
+
+                    <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-bell"></i>
+                        <span class="badge badge-pill badge-warning notification">3</span>
+                    </a>
+                    <div class="dropdown-menu notifications" aria-labelledby="dropdownMenuMessage">
+                        <div class="notifications-header">
+                            <i class="fa fa-bell"></i>
+                            Notifications
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <div class="notification-content">
+                                <div class="icon">
+                                    <i class="fas fa-check text-success border border-success"></i>
+                                </div>
+                                <div class="content">
+                                    <div class="notification-detail">dabai您好</div>
+                                    <div class="notification-time">
+                                        6 minutes ago
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <div class="notification-content">
+                                <div class="icon">
+                                    <i class="fas fa-exclamation text-info border border-info"></i>
+                                </div>
+                                <div class="content">
+                                    <div class="notification-detail">dabai您好</div>
+                                    <div class="notification-time">
+                                        Today
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <div class="notification-content">
+                                <div class="icon">
+                                    <i class="fas fa-exclamation-triangle text-warning border border-warning"></i>
+                                </div>
+                                <div class="content">
+                                    <div class="notification-detail">dabai您好</div>
+                                    <div class="notification-time">
+                                        Yesterday
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-center" href="#">View all notifications</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-envelope"></i>
+                        <span class="badge badge-pill badge-success notification">7</span>
+                    </a>
+                    <div class="dropdown-menu messages" aria-labelledby="dropdownMenuMessage">
+                        <div class="messages-header">
+                            <i class="fa fa-envelope"></i>
+                            Messages
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <div class="message-content">
+                                <div class="pic">
+                                    <img src="../img/user.jpg" alt="">
+                                </div>
+                                <div class="content">
+                                    <div class="message-title">
+                                        <strong> dabai</strong>
+                                    </div>
+                                    <div class="message-detail">dabai您好</div>
+                                </div>
+                            </div>
+
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <div class="message-content">
+                                <div class="pic">
+                                    <img src="../img/user.jpg" alt="">
+                                </div>
+                                <div class="content">
+                                    <div class="message-title">
+                                        <strong> dabai</strong>
+                                    </div>
+                                    <div class="message-detail">dabai您好</div>
+                                </div>
+                            </div>
+
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <div class="message-content">
+                                <div class="pic">
+                                    <img src="../img/user.jpg" alt="">
+                                </div>
+                                <div class="content">
+                                    <div class="message-title">
+                                        <strong> dabai</strong>
+                                    </div>
+                                    <div class="message-detail">dabai您好</div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-center" href="#">View all messages</a>
+
+                    </div>
+                </div>
+                
+                <div>
+                    <a href="#" onclick="logOut()">
+                        <i class="fa fa-power-off"></i>
+                    </a>
+                </div>
+                <div class="pinned-footer">
+                    <a href="#">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!-- page-content  -->
+
+<div class="modal fade" id="shouldloginmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">访问用户需要登陆,您的验证信息可能过期,请尝试登陆重试</h4>
+            </div>
+            <div class="modal-body">
+            <div class="form-group"  >
+                         <input type="text" class="form-control" placeholder=" username" id="uname"
+               autofocus  value=""><div style="color: #FF3333"><b id="loginfailedinfo">请输入用户密码 </b></div>
+        <input type="password" class="form-control" id="password"   placeholder="Password" >
+			
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="submitlogin()">login</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+        <main class="page-content pt-2">
+            <header class="am-topbar" data-am-sticky="{animation: 'slide-top'}">
+                <h1 class="am-topbar-brand">
+
+                    <span>导航背景</span>
+                    <span> <a href="#" data-theme="default-theme"  class="btn theme default-theme selected"></a>
+                              </span>  <a href="#" data-theme="light-theme" class="btn theme light-theme"></a>
+                    <a id="toggle-sidebar" class="btn " href="#">
+                        <span>关闭/打开导航</span>
+                    </a>
+                    <a id="pin-sidebar" class="btn am-btn-lg " href="#">
+                        <span>隐藏导航</span>
+                    </a>
+                </h1>
+
+                <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+                <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+                    <ul class="am-nav am-nav-pills am-topbar-nav">
+                        <li class="am-active"><a href="../">首页</a></li>
+                        <li class="am-dropdown" data-am-dropdown>
+                            <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                                身份大陆 <span class="am-icon-caret-down"></span>
+                            </a>
+                            <ul class="am-dropdown-content" id="identity">
+                                <li class="am-dropdown-header">标题</li>
+                                <li><a href="#">1. 去月球</a></li>
+                                <li class="am-active"><a href="#">2. 去火星</a></li>
+                                <li><a href="#">3. 还是回地球</a></li>
+                                <li class="am-disabled"><a href="#">4. 下地狱</a></li>
+                                <li class="am-divider"></li>
+                                <li><a href="#">5. 桥头一回首</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
+                            <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>校内用户 <span class="am-icon-caret-down"></span></button>
+                            <ul class="am-dropdown-content">
+
+                                <li><a href="../html/authentic.html">身份验证</a></li>
+                                <li><a id="schoolea">校内系统</a></li>
+                            </ul>
+                        </div>
+
+                    <div class="am-topbar-right">
+                        <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
+                            <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>其他 <span class="am-icon-caret-down"></span></button>
+                            <ul class="am-dropdown-content">
+
+                                <li><a href="../html/register.html">注册</a></li>
+                                <li><a onclick="logOut()">退出</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="am-topbar-right">
+                        <a id="username" class="am-btn am-btn-primary  am-topbar-btn am-btn-sm" data-toggle='modal' data-target='#shouldloginmodal' href="" style="color:white">登录</a>
+                    </div>
+                </div>
+            </header>	
+
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class=" col-md-8">
+                        <div class="col-md-12 col-sm-12  form-group top_search">
+                            <div class="input-group" >
+                                <input type="text" class="form-control" id="searchwhat" placeholder="Search for...">
+                                <span class="input-group-btn">
+                      <button class="btn btn-info am-btn-lg" type="button" onclick="search(1)">Search!</button>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <div id="overlay" class="overlay"></div>
+            <div class="container-fluid p-5">
+
+                <hr>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class=" col-md-9">
+                        <div class="am-slider am-slider-default" data-am-flexslider id="demo-slider-0" >
+                            <ul class="am-slides" >
+                                <li><img class=" img-responsive img-thumbnail" style="height:400px" src="../img/2011617141150747780107.jpg" /></li>
+                                <li><img class=" img-responsive img-thumbnail" style="height:400px" src="../img/2011617141148185778094.jpg" /></li>
+                            </ul>
+                        </div>
+
+                        
+                    <div id="midleDiv">
+                        <article class="am-g blog-entry-article">
+                            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+                                <img src="../images/$forumInfo.jpg" alt="" class="am-u-sm-12">
+                            </div>
+                            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+                                <span><a href="" class="blog-color">article &nbsp;</a></span>
+                                <span> @dabai &nbsp;</span>
+                                <span>2019/4/25</span>
+                                <h1><a href="">我本楚狂人，凤歌笑孔丘</a></h1>
+                                <p>我们一直在坚持着，不是为了改变这个世界，而是希望不被这个世界所改变。
+                                </p>
+                                <p><a href="" class="blog-continue">continue reading</a></p>
+                            </div>
+                        </article>
+                        
+                        </div>
+                        <div class="am-btn-toolbar am-pagination"  id="pageul">
+                             
+                        </div>
+                        <div id="insDiv" style="height: 100%;width: 13%;position: fixed;left: 5px;top: 170px;">
+                         <button type="button" class="close" onclick="hideins()" aria-hidden="true">&times;</button>
+                         <span  class="am-close am-close-alt am-close-spin am-icon-times" onclick="hideins()"></span>
+                            <div class="am-panel am-panel-primary">
+                                <div class="am-panel-hd text-center">
+                                    <h1>分类</h1>
+                                </div>
+                                <div class="am-panel-db ">
+                                
+                                    <ul class="am-list am-list-static am-list-border am-list-striped" name="insul">
+                                    
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+
+
+
+                <hr>
+                <input type="hidden" id="totalpage" value="1">
+
+            </div>
+
+        </main>
+        <!-- page-content" -->
+    </div>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/amazeui.ie8polyfill.min.js"></script>
+    <script src="../js/amazeui.min.js"></script>
+    <script src="../js/main.js"></script>
+<script src="../js/myindex.js"></script>
+</body>
+    
+    
+</html>

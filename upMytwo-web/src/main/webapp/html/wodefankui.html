@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我的反馈</title>
+    <link rel="stylesheet" href="../css/amazeui.min.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+</head>
+<body>
+<input type="hidden" value="$user.username" id="uname">
+<input type="hidden" id="userid" value="$user.user_id" >
+<nav class="navbar navbar-default navbar-fixed-top" >
+    <div class="container">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a class="navbar-brand" href="../html/index.html">反馈系统</a>
+                </li>
+            </ul>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#"></a></li>
+                <li><a href="../html/index.html">首页</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="../navbar/">社区</a></li>
+                <li class="dropdown">
+                    <a href="#" class="downshow" onmouseover="showMenu()" role="button" aria-haspopup="true"
+                       aria-expanded="false" id="mea"> 用户<span class="caret"></span></a>
+                    <ul class="dropdown-menu" onmouseleave="hideMenu()" id="dropMenu"
+                        style="display: none;">
+                        <li ><a href="#" id="mycenter">个人中心</a></li>
+                        <li><a id="toEdit" href="">修改信息</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">其他</li>
+                        <li><a   id="mycomment">我的建议</a></li>
+                        <li><a href="#" onclick="logOut()">退出登陆</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<!-- 功能模块 -->
+<div class="row div_function" style="margin-top: 70px">
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-5">
+        <div class="panel panel-default" >
+            <div class="panel-body">
+                <strong>回复</strong>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-5">
+        <div class="panel panel-default" >
+            <div class="panel-body">
+                <strong>回复</strong>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="container div_divider">
+    <!-- 分割线 -->
+    <hr>
+    <div class="row">
+        <!-- 文章列表 -->
+        <div class="col-xs-9">
+            <div class="list-group div_article">
+                <!-- 子头栏 -->
+                <a href="#" class="list-group-item active item_article_first">
+                    <h4 class="list-group-item-heading panel-success text-center" id="someinfo">
+                        我的提出
+                    </h4>
+                </a>
+                <div id="forumdiv">
+                    <div class="advicepost "
+                         style="border: 2px solid #d5dbe2; border-radius: 3px;">
+                        <div class="row" style="margin: 1cm;">
+                            <div class="col-md-3 comment_left">
+                                <img title="个人信息,用户学院 性别" src="../img/user.jpg"
+                                     class="img-thumbnail   popover-options" data-container="body"
+                                     data-placement="left" data-toggle="popover"
+                                     data-content="<div class='col-md-12 col-xs-12 text-center'style='border: 1px solid #5bc0de;border-radius:28px;text-align: center'><div class='x_panel fixed_height_390'><div class='x_content'><div class='flex'><ul class='list-inline widget_profile_box'><li><a href='#'><img src='picture/lunbo2.jpg'alt='...'class='img-circle profile_img'style=' width:150px;height:150px; '></a></li></ul></div><hr><h3 class='name'>Musimbi</h3><div class='flex'><ul class='list-inline count2'><li><h3>123</h3><span>Articles</span></li><li><h3>1234</h3><span>Followers</span></li><li><h3>123</h3><span>Following</span></li></ul></div><hr><p>If you've.</p></div></div></div>"
+                                     style="width: 160px; height: 120px; max-width: 90%; max-height: 80%">
+                                <div class="nameDiv">
+                                    <b>danao</b>
+                                </div>
+
+                            </div>
+                            <div class="col-md-9">
+                                <div style="float: right">
+                                    <p>#1</p>
+                                </div>
+                                <hr>
+                                <blockquote>
+
+                                    <p>
+                                        这里是环境工程学院分类贴. <strong>并非限制区域发帖 只是方便查看</strong> 可以自行选择发帖区域 和 类型.
+                                    </p>
+                                    <p style="float: right">
+                                        <small>时间:</small>
+                                    </p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="advicepost "
+                         style="border: 2px solid #d5dbe2; border-radius: 3px;">
+                        <div class="row" style="margin: 1cm;">
+                            <div class="col-md-3 comment_left">
+                                <img title="个人信息,用户学院 性别" src="../img/user.jpg"
+                                     class="img-thumbnail   popover-options" data-container="body"
+                                     data-placement="left" data-toggle="popover"
+                                     data-content="<div class='col-md-12 col-xs-12 text-center'style='border: 1px solid #5bc0de;border-radius:28px;text-align: center'><div class='x_panel fixed_height_390'><div class='x_content'><div class='flex'><ul class='list-inline widget_profile_box'><li><a href='#'><img src='picture/lunbo2.jpg'alt='...'class='img-circle profile_img'style=' width:150px;height:150px; '></a></li></ul></div><hr><h3 class='name'>Musimbi</h3><div class='flex'><ul class='list-inline count2'><li><h3>123</h3><span>Articles</span></li><li><h3>1234</h3><span>Followers</span></li><li><h3>123</h3><span>Following</span></li></ul></div><hr><p>If you've.</p></div></div></div>"
+                                     style="width: 160px; height: 120px; max-width: 90%; max-height: 80%">
+                                <div class="nameDiv">
+                                    <b>danao</b>
+                                </div>
+
+                            </div>
+                            <div class="col-md-9">
+                                <div style="float: right">
+                                    <p>#1</p>
+                                </div>
+                                <hr>
+                                <blockquote>
+
+                                    <p>
+                                        这里是环境工程学院分类贴. <strong>并非限制区域发帖 只是方便查看</strong> 可以自行选择发帖区域 和 类型.
+                                    </p>
+                                    <p style="float: right">
+                                        <small>时间:</small>
+                                    </p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 右侧 -->
+        <div class="col-xs-3 div_record">
+
+
+
+            <hr>
+            <div class="am-topbar-form am-topbar-right am-form-inline" role="search">
+                <div class="am-form-group">
+                    <input type="text" id="searchmyforum" class="am-form-field am-input-sm" style="height: 37px" placeholder="搜索">
+                    <button class="btn btn-info" onclick="searchmyforum()">search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 登录模态框 -->
+    <div class="modal fade bs-example-modal-sm" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title" id="myModalLabel" style="text-align: center;">登录</div>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" style="padding: 12px;">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="账户名">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="inputPassword3" placeholder="密码">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" style="text-align: center;">
+                    <button type="button" class="btn btn-primary" style="width: 100%">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showMenu() {
+        document.getElementById("dropMenu").style.display = "block"
+    }
+    function hideMenu() {
+        document.getElementById("dropMenu").style.display = "none"
+    }
+</script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
