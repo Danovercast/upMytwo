@@ -23,5 +23,5 @@ public interface InstitutionMapper {
 
 	 InstitutionInfo getInstitutionInfoById(Long insid);
 
-	 List<InstitutionInfo> findInstitutionInfoList(Integer start, Integer pagesize);
+	// List<InstitutionInfo> findInstitutionInfoList(Integer start, Integer pagesize);
 }

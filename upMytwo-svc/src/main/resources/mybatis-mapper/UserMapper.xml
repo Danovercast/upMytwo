@@ -139,12 +139,12 @@
     	</if>
     </where>
   </update>
-	<select id="findUserByUsername" parameterType="java.lang.String" resultType="com.dabai.dto.SomeInfo.User">
+	<select id="findUserByUsername" parameterType="java.lang.String" resultType="com.dabai.dto.User.User">
 		select * from 
 		user
 		where username=#{username,jdbcType=VARCHAR}
 	</select>
-	<select id="findUserByEmail" parameterType="java.lang.String" resultType="com.dabai.dto.SomeInfo.User">
+	<select id="findUserByEmail" parameterType="java.lang.String" resultType="com.dabai.dto.User.User">
 		select * from
 		user
 		where email=#{email}
@@ -158,7 +158,7 @@
 		and
 		password=#{password}
 	</update>
-	<select id="findUserByFirst" parameterType="com.dabai.dto.SomeInfo.User" resultType="com.dabai.dto.SomeInfo.User">
+	<select id="findUserByFirst" parameterType="com.dabai.dto.SomeInfo.User" resultType="com.dabai.dto.User.User">
 		select * from
 		user
 		where username=#{username}
@@ -184,7 +184,7 @@
 		and
 		password=#{password,jdbcType=VARCHAR}
 	</select>
-	<select id="findUserByNameId" resultType="com.dabai.dto.SomeInfo.User">
+	<select id="findUserByNameId" resultType="com.dabai.dto.User.User">
 		select * 
 		from user
 		where username=#{0}
@@ -212,12 +212,12 @@
 		u.role_id=r.role_id
 		limit #{start},#{end}
 	</select>
-	<select id="findUserById" parameterType="java.lang.String" resultType="com.dabai.dto.SomeInfo.User">
+	<select id="findUserById" parameterType="java.lang.String" resultType="com.dabai.dto.User.User">
 		select * from 
 		user
 		where user_id=#{uid}
 	</select>
-	<select id="authenticSchoolUser" parameterType="com.dabai.dto.SomeInfo.SchoolUser">
+	<select id="authenticSchoolUser" parameterType="com.dabai.dto.SomeInfo.SchoolUser" resultType="java.lang.Integer">
 		select count(*) from schooluser
 		where stunumber=#{stunumber}
 		and
