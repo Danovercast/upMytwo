@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dabai.dao.Forum.ForumMapper">
+	<resultMap type="com.dabai.dto.SomeInfo.ForumInfo" id="forumInfo">
+		<result column="forum_id" property="forumid" />
+		<result column="author_id" property="authorid" />
+		<result column="institution_id" property="institutionid" />
+		<result column="institution_name" property="institutionname" />
+		<result column="username" property="authorname" />
+		<result column="image" property="image" />
+		<result column="create_time" property="createtime" />
+		<result column="description" property="description" />
+		<result column="title" property="title" />
+		<result column="signature" property="signature" />
+		<result column="state" property="state" />
+	</resultMap>
+	<resultMap type="com.dabai.dto.Forum.HomeForum" id="homeForum">
+		<result column="forum_id" property="forumid" />
+		<result column="title" property="title" />
+		<result column="institution_id" property="insid" />
+		<result column="image" property="insimg" />
+		<result column="create_time" property="createtime" />
+		<result column="description" property="description" />
+		<result column="institution_name" property="insname" />
+	</resultMap>
+	<insert id="insertForum" parameterType="com.dabai.dto.Forum.Forum"
+		useGeneratedKeys="true" keyProperty="forum_id">
+		insert into forum
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="forum_id != null">
+				forum_id,
+			</if>
+			<if test="author_id != null">
+				author_id,
+			</if>
+			<if test="institution_id != null">
+				institution_id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+			<if test="create_time != null">
+				create_time,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="forum_id != null">
+				#{forum_id,jdbcType=BIGINT},
+			</if>
+			<if test="author_id != null">
+				#{author_id,jdbcType=VARCHAR},
+			</if>
+			<if test="institution_id != null">
+				#{institution_id,jdbcType=BIGINT},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=INTEGER},
+			</if>
+			<if test="create_time != null">
+				#{create_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=CLOB},
+			</if>
+		</trim>
+	</insert>
+	<update id="normalDeleteForumById" parameterType="java.lang.Long">
+		update
+		forum
+		<set>
+			state=0
+		</set>
+		where forum_id=#{forum_id}
+	</update>
+	<select id="findForumListByUserId" resultType="com.dabai.dto.Forum.Forum">
+		select * from
+		forum
+		where author_id=#{0} and state!=0
+		order by create_time
+		desc
+		limit
+		#{1},#{2}
+	</select>
+	<select id="findForumListByInstitutionId" resultMap="forumInfo">
+		select
+		f.forum_id,f.author_id,f.title,f.description,f.create_time,u.username 
+		from
+		forum f,user u
+		where f.institution_id=#{institution_id} and
+		state!=0
+		and f.author_id=u.user_id
+		order by create_time desc
+		limit
+		#{start},#{end}
+
+
+	</select>
+	<select id="findForumById" parameterType="java.lang.Long" resultMap="forumInfo">
+		select
+		f.forum_id,f.author_id,f.institution_id,f.title,f.description,f.create_time,u.username,u.image,i.institution_name
+		,u.signature
+		from forum f,institution i,user u,institution_content ic
+		where
+		f.forum_id=#{forum_id}
+		and
+		f.author_id=u.user_id
+		and
+		f.institution_id=i.institution_id
+		and
+		i.institution_id=ic.institution_id
+	</select>
+
+	<update id="updateForum" parameterType="com.dabai.dto.Forum.Forum">
+		update forum
+		<set>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=INTEGER},
+			</if>
+			<if test="create_time != null">
+				create_time = #{create_time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=CLOB},
+			</if>
+		</set>
+		where forum_id = #{forum_id,jdbcType=BIGINT}
+		and
+		author_id=#{author_id,jdbcType=VARCHAR}
+		and
+		institution_id =
+		#{institution_id,jdbcType=BIGINT}
+		and
+		state=1
+	</update>
+	<select id="getForumCountByUserId" parameterType="java.lang.String"
+		resultType="Integer">
+		select count(*)
+		from forum
+		where author_id=#{user_id}
+	</select>
+	<select id="getForumCountByInstitutionId" parameterType="java.lang.Long"
+		resultType="Integer">
+		select count(*)
+		from forum
+		where
+		institution_id=#{institution_id}
+	</select>
+	<update id="normalDeleteForumSelf" parameterType="java.util.Map">
+		update
+		forum
+		set
+		state=0
+		where forum_id=#{forum_id}
+		and
+		author_id=#{author_id}
+	</update>
+	<select id="getMomentForum" parameterType="java.util.Map"
+		resultMap="forumInfo">
+		select
+		f.forum_id,f.author_id,f.institution_id,f.title,f.description,f.create_time,u.username,ic.image,i.institution_name
+		,u.signature
+		from forum f,institution i,user u,institution_content ic
+		where
+		f.state!=0
+		and
+		f.author_id=u.user_id
+		and
+		f.institution_id=i.institution_id
+		and
+		i.institution_id=ic.institution_id
+		order by create_time
+		desc
+		limit
+		#{start},#{end}
+	</select>
+	<select id="getCountByPageInfo" resultType="java.lang.Integer" parameterType="com.dabai.dto.SomeInfo.PageInfo">
+		select count(*)
+		from forum
+		<where>
+			<if test="institutionid!=null">
+				institution_id=#{institutionid}
+			</if>
+			<if test="userid!=null">
+				and author_id=#{userid}
+			</if>
+			<if test="code!=null">
+				and title like "%"#{code}"%"
+			</if>
+			and 
+			state=1
+		</where>
+	</select>
+	<select id="getHomeForumUserid" resultMap="homeForum" parameterType="java.lang.String">
+		select ic.image,ic.institution_id,f.forum_id,f.title,f.description,f.create_time,i.institution_name
+		from institution_content ic,forum f,institution i
+		where
+		f.author_id=#{uid}
+		and
+		f.institution_id=ic.institution_id
+		and
+		i.institution_id=ic.institution_id
+		and
+		f.state!=0
+	</select>
+	<select id="getForumList" resultMap="forumInfo" parameterType="java.util.Map">
+		select i.institution_name,i.institution_id,f.forum_id,f.title,f.description,f.author_id,f.create_time,f.state,u.username
+		from institution i,user u,forum f
+		where i.institution_id=f.institution_id
+		and
+		f.author_id=u.user_id
+		order by f.create_time
+		limit #{start},#{end}
+	</select>
+	<select id="findSearchForum" parameterType="java.util.Map" resultMap="forumInfo">
+		select
+		f.forum_id,f.author_id,f.institution_id,f.title,f.description,f.create_time,u.username,ic.image,i.institution_name
+		,u.signature
+		from forum f,institution i,user u,institution_content ic
+		where
+		f.state!=0
+		and
+		f.author_id=u.user_id
+		and
+		f.institution_id=i.institution_id
+		and
+		i.institution_id=ic.institution_id
+	
+		<if test="userid!=null">
+			and author_id=#{userid}
+		</if>
+		<if test="key!=null">
+			and title like "%"#{key}"%"
+		</if>
+			order by create_time
+		desc
+		limit #{start},#{end}
+	</select>
+</mapper>

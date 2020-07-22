@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dabai.dao.User.UserFocusInstitutionMapper" >
+  <resultMap type="com.dabai.dto.SomeInfo.UserFocusInstitutionInfo" id="userFocusInstitutionInfo">
+  	<id column="institution_id" property="institution_id"/>
+  	<result column="institution_name" property="institution_name"/>
+  	<result column="description" property="description"/>
+  	<result column="image" property="image"/>
+  	<result column="blg_image1" property="blg_image1"/>
+  	<result column="blg_image2" property="blg_image2"/>
+  	<result column="blg_image3" property="blg_image3"/>
+  	<result column="focus_start" property="focus_start"/>
+  </resultMap>
+  <insert id="insertUserFocusInstitution" parameterType="com.dabai.dto.SomeInfo.UserFocusInstitution" >
+    insert into user_focus_institution
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="institution_id != null" >
+        institution_id,
+      </if>
+      <if test="user_id != null" >
+        user_id,
+      </if>
+      <if test="is_focus != null" >
+        is_focus,
+      </if>
+      <if test="focus_start != null" >
+        focus_start,
+      </if>
+      <if test="focus_end != null" >
+        focus_end,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="institution_id != null" >
+        #{institution_id,jdbcType=BIGINT},
+      </if>
+      <if test="user_id != null" >
+        #{user_id,jdbcType=VARCHAR},
+      </if>
+      <if test="is_focus != null" >
+        #{is_focus,jdbcType=BIT},
+      </if>
+      <if test="focus_start != null" >
+        #{focus_start,jdbcType=DATE},
+      </if>
+      <if test="focus_end != null" >
+        #{focus_end,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByUserIdInstitutionId" parameterType="com.dabai.com.dabai.mytwo.entity.UserFocusInstitution" >
+    update user_focus_institution
+    <set >
+       <if test=" is_focus != null" >
+        is_focus = #{is_focus,jdbcType=BIT},
+      </if>
+      <if test="focus_start != null" >
+        focus_start = #{focusStart,jdbcType=DATE},
+      </if>
+      <if test=" focus_end != null" >
+        focus_end = #{focusEnd,jdbcType=DATE},
+      </if>
+    </set>
+    where 
+        user_id = #{user_id,jdbcType=VARCHAR} 
+         and
+        institution_id = #{institution_id,jdbcType=BIGINT}
+  </update>
+  <select id="findUserFocusInstitutionContentByUserId" resultMap="userFocusInstitutionInfo" parameterType="java.util.Map">
+  	select i.institution_id,i.institution_name,i_c.description,i_c.image,i_c.blg_image1,i_c.blg_image2,i_c.blg_image3,u_f_i.focus_start
+  	from institution i,institution_content i_c,user_focus_institution u_f_i
+  	where i_c.institution_id=i.institution_id
+  	and
+  	u_f_i.user_id=#{user_id}
+  	and
+  	u_f_i.institution_id=i.institution_id
+  	and
+  	u_f_i.is_focus=1
+  	limit #{start},#{end}
+  </select>  
+  <select id="getCountFocusInstitution" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	select count(*)
+  	from user_focus_institution
+  	where is_focus=1
+  	and user_id=#{user_id}
+  </select>
+  </mapper>

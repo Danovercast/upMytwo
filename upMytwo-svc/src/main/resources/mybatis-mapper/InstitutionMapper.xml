@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dabai.dao.Institution.InstitutionMapper" >
+<resultMap type="com.dabai.dto.Institution.InstitutionInfo" id="ic">
+	<result column="institution_id" property="institutionid"/>
+	<result column="institution_name" property="institutionname"/>
+	<result column="image" property="image"/>
+	<result column="blg_image1" property="blgimage1"/>
+	<result column="blg_image2" property="blgimage2"/>
+	<result column="blg_image3" property="blgimage3"/>
+	<result column="description" property="description"/>
+	<result column="create_time" property="createtime"/>
+</resultMap>
+  <insert id="insertInstitution" parameterType="com.dabai.dto.Institution.Institution" useGeneratedKeys="true" keyProperty="institution_id">
+    insert ignore into institution ( institution_name, create_time
+      )
+    values ( #{institution_name,jdbcType=VARCHAR}, #{create_time,jdbcType=DATE}
+      )
+  </insert>
+  <update id="updateInstitution" parameterType="com.dabai.dto.Institution.Institution">
+  update ignore institution
+  	<set>
+  	<if test="create_time">
+  		create_time=#{create_time}
+  	</if>
+  	<if test="institution_name!=null">
+  		institution_name=#{institution_name}
+  	</if>
+  	</set>
+  	where institution_id=#{institution_id}
+  </update>
+  <select id="findAllInstitution" resultType="com.dabai.dto.Institution.Institution">
+  	select * from
+  	institution
+  </select>
+  <select id="findById" parameterType="java.lang.Long" resultType="com.dabai.dto.Institution.Institution">
+  	select * from
+  	institution
+  	where institution_id=#{institution_id}
+  </select>
+  <select id="getCountInstitution" resultType="java.lang.Integer">
+  	select count(*)
+  	from institution
+  </select>
+  <select id="findInstitutionList" resultType="com.dabai.dto.Institution.Institution">
+  	select * from
+  	institution
+  	limit #{0},#{1}
+  </select>
+  <select id="findInstitutionInfo"  resultMap="ic">
+  	select i.institution_id,i.institution_name,ic.image,ic.description
+  	from institution i,institution_content ic
+  	where ic.state=1
+  	and
+  	ic.institution_id=i.institution_id
+  	limit #{0},#{1}
+  </select>
+  <select id="getInstitutionInfoById" resultMap="ic" parameterType="java.lang.Long">
+  	select i.institution_id,i.institution_name,i.create_time,ic.image,ic.blg_image1,ic.blg_image2,ic.blg_image3,ic.description
+  	from institution i,institution_content ic
+  	where i.institution_id=#{insid}
+  	and
+  	ic.institution_id=#{insid}
+  </select>
+</mapper>
