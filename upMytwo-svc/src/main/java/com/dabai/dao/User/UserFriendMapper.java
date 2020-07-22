@@ -5,10 +5,11 @@ package com.dabai.dao.User;
 import com.dabai.dto.SomeInfo.FriendInfo;
 import com.dabai.dto.SomeInfo.OtherUserInfo;
 import com.dabai.dto.User.UserFriend;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.HashMap;
 import java.util.List;
-
+@Mapper
 public interface UserFriendMapper {
 	int insertUserFriend(UserFriend userFriend);
 

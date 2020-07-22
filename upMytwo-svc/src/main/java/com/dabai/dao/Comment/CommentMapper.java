@@ -5,11 +5,12 @@ package com.dabai.dao.Comment;
 import com.dabai.dto.SomeInfo.CommentInfo;
 import com.dabai.dto.SomeInfo.UserCommentInfo;
 import com.dabai.dto.Comment.Comment;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-
+@Mapper
 public interface CommentMapper {
 	int insertComment(Comment comment);
 

@@ -3,9 +3,10 @@ package com.dabai.dao.User;
 
 
 import com.dabai.dto.SomeInfo.LoginHistory;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-
+@Mapper
 public interface LoginHistoryMapper {
 	public int insertLoginHistory(LoginHistory loginHistory);
 	public int deleteLoginHistoryById(LoginHistory loginHistory);

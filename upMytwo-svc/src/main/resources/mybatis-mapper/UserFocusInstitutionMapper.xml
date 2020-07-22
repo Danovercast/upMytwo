@@ -54,7 +54,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByUserIdInstitutionId" parameterType="com.dabai.com.dabai.mytwo.entity.UserFocusInstitution" >
+  <update id="updateByUserIdInstitutionId" parameterType="com.dabai.dto.SomeInfo.UserFocusInstitution" >
     update user_focus_institution
     <set >
        <if test=" is_focus != null" >

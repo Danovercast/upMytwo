@@ -7,7 +7,7 @@ spring:
   #数据库连接配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/com.dabai.mytwo?characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/mytwo?characterEncoding=utf-8
     username: root
     password: root
 #dubbo配置
@@ -25,8 +25,7 @@ dubbo:
     address: zookeeper://localhost:2181
 #mybatis的相关配置
 mybatis:
-  #mapper配置文件
-  mapper-locations: classpath:com.dabai.dao.*/*.xml
   #开启驼峰命名
-  configuration:
-    map-underscore-to-camel-case: true
+#  configuration:
+#    map-underscore-to-camel-case: true
+  mapper-locations: classpath:/mybatis-mapper/*Mapper.xml

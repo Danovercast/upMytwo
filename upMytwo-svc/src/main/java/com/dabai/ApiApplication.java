@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * <p>@version:     1.0</p>
  */
 @SpringBootApplication
-@MapperScan("com.dabai.dao.*")
+@MapperScan("com.dabai.dao")
 public class ApiApplication {
     public static void main(String[] args) {
         SpringApplication.run(ApiApplication.class,args);

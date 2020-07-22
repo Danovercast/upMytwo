@@ -2,6 +2,7 @@ package com.dabai.dao.Comment;
 
 
 import com.dabai.dto.SomeInfo.FeedBack;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 * 类说明 FeedBackMapper
 */
+@Mapper
 public interface FeedBackMapper {
 
 	List<FeedBack> findFeedBackList(String userid, Integer start);

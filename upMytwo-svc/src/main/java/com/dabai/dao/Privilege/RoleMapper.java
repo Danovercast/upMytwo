@@ -3,9 +3,10 @@ package com.dabai.dao.Privilege;
 
 
 import com.dabai.dto.Privilege.Role;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-
+@Mapper
 public interface RoleMapper {
 	public Long insertRole(Role role);
 	public int updateRole(Role role);

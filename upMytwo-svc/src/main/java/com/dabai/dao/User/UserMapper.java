@@ -1,6 +1,7 @@
 package com.dabai.dao.User;
 
 import com.dabai.dto.SomeInfo.OtherUserInfo;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import com.dabai.dto.User.SchoolUser;
 import com.dabai.dto.User.User;
@@ -8,7 +9,7 @@ import com.dabai.dto.User.User;
 import java.util.HashMap;
 import java.util.List;
 
-@Repository
+@Mapper
 public interface UserMapper {
 	 int insertUser(User user);
 

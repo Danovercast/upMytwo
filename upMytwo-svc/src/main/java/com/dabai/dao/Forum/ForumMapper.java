@@ -5,11 +5,12 @@ import com.dabai.dto.SomeInfo.ForumInfo;
 import com.dabai.dto.SomeInfo.PageInfo;
 import com.dabai.dto.Forum.Forum;
 import com.dabai.dto.Forum.HomeForum;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Mapper
 public interface ForumMapper {
 	public int insertForum(Forum forum);
 
