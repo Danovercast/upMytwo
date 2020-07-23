@@ -14,12 +14,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthConfig {
-    /** 代表这个JWT的接收对象 */
+    /**
+     * 代表这个JWT的接收对象
+     */
     private String clientId;
-    /** 密钥, 经过Base64加密 */
+    /**
+     * 密钥, 经过Base64加密
+     */
     private String base64Secret;
-    /**  JWT的签发主体 */
+    /**
+     * JWT的签发主体
+     */
     private String name;
-    /** 过期时间，时间戳 */
+    /**
+     * 过期时间，时间戳
+     */
     private Long expiresSecond;
 }

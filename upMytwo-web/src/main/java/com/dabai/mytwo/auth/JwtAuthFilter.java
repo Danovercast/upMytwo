@@ -11,37 +11,37 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**  
-* @author dabai: 
-
-* 类说明  jwt认证
-*/
+/**
+ * @author dabai:
+ * <p>
+ * 类说明  jwt认证
+ */
 public class JwtAuthFilter extends AccessControlFilter {
 
-	@Override
-	protected boolean isAccessAllowed(ServletRequest arg0, ServletResponse arg1, Object arg2) throws Exception {
-		return false;
-	}
+    @Override
+    protected boolean isAccessAllowed(ServletRequest arg0, ServletResponse arg1, Object arg2) throws Exception {
+        return false;
+    }
 
-	@Override
-	protected boolean onAccessDenied(ServletRequest arg0, ServletResponse arg1) throws Exception {
-		HttpServletRequest request=(HttpServletRequest) arg0;
-		String jwt=request.getHeader("Authorization");
-		if(JwtUtil.verifyToken(jwt)){
-			 UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(jwt, jwt);
-			 try{
-			getSubject(arg0,arg1).login(usernamePasswordToken);
-			
-			return true;
-			 }catch(Exception e){
-				 return false;
-			 }
-		}
-		redirectToLogin(arg0,arg1);
-		return false;
-	}
+    @Override
+    protected boolean onAccessDenied(ServletRequest arg0, ServletResponse arg1) throws Exception {
+        HttpServletRequest request = (HttpServletRequest) arg0;
+        String jwt = request.getHeader("Authorization");
+        if (JwtUtil.verifyToken(jwt)) {
+            UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(jwt, jwt);
+            try {
+                getSubject(arg0, arg1).login(usernamePasswordToken);
 
-	 /**
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
+        redirectToLogin(arg0, arg1);
+        return false;
+    }
+
+    /**
      * 对跨域提供支持
      */
     @Override
@@ -58,6 +58,6 @@ public class JwtAuthFilter extends AccessControlFilter {
         }
         return super.preHandle(request, response);
     }
-	
+
 
 }

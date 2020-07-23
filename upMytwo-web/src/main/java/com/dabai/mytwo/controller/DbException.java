@@ -11,48 +11,49 @@ import org.springframework.web.servlet.ModelAndView;
 
 @ControllerAdvice
 public class DbException {
-	 private static Logger logger = LoggerFactory.getLogger(DbException.class);
-	    /**
-	     * 400 - Bad Request
-	     */
-	    @ExceptionHandler(HttpMessageNotReadableException.class)
-	    public ModelAndView handleHttpMessageNotReadableException(HttpMessageNotReadableException e ) {
-	    	ModelAndView mv = new ModelAndView();
-	        logger.error("参数解析失败", e);
-	        mv.addObject("result", "错误请求");
-	        mv.setViewName("error");
-	        return mv;
-	    }
-	    
-	    
-	    /**
-	     * 405 - Method Not Allowed
-	     */
-	    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-	    public ModelAndView handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e ) {
-	    	logger.error("参数解析失败", e);
-	        ModelAndView mv = new ModelAndView();
-	        mv.addObject("result", "参数解析错误");
-	        mv.setViewName("error");
-	        return mv;
-	    }
+    private static Logger logger = LoggerFactory.getLogger(DbException.class);
 
-	    /**
-	     * 415 - Unsupported Media Type
-	     */
-	    @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
-	    public ModelAndView handleHttpMediaTypeNotSupportedException(Exception e ) {
-	        logger.error("不支持当前媒体类型", e);
-	        ModelAndView mv = new ModelAndView();
-	        mv.addObject("result", "支持当前媒体类型");
-	        mv.setViewName("error");
-	        return mv;
-	        
-	    }
+    /**
+     * 400 - Bad Request
+     */
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ModelAndView handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
+        ModelAndView mv = new ModelAndView();
+        logger.error("参数解析失败", e);
+        mv.addObject("result", "错误请求");
+        mv.setViewName("error");
+        return mv;
+    }
 
-	    /**
-	     * 500 - Internal Server Error
-	     */
+
+    /**
+     * 405 - Method Not Allowed
+     */
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ModelAndView handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {
+        logger.error("参数解析失败", e);
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("result", "参数解析错误");
+        mv.setViewName("error");
+        return mv;
+    }
+
+    /**
+     * 415 - Unsupported Media Type
+     */
+    @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
+    public ModelAndView handleHttpMediaTypeNotSupportedException(Exception e) {
+        logger.error("不支持当前媒体类型", e);
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("result", "支持当前媒体类型");
+        mv.setViewName("error");
+        return mv;
+
+    }
+
+    /**
+     * 500 - Internal Server Error
+     */
 	/*    @ExceptionHandler(Exception.class)
 	    public ModelAndView handleException(Exception e ) {
 	   
@@ -62,14 +63,14 @@ public class DbException {
 	        mv.setViewName("error");
 	        return mv;
 	    }*/
-	    @ExceptionHandler(NumberFormatException.class)
-	    public ModelAndView handleNumberFormatException(Exception e ) {
-	    	
-	    	logger.error("服务运行异常", e);
-	    	 
-	    	  ModelAndView mv = new ModelAndView();
-		        mv.addObject("result", "警告:错误的参数");
-		        mv.setViewName("error");
-		        return mv;
-	    }
+    @ExceptionHandler(NumberFormatException.class)
+    public ModelAndView handleNumberFormatException(Exception e) {
+
+        logger.error("服务运行异常", e);
+
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("result", "警告:错误的参数");
+        mv.setViewName("error");
+        return mv;
+    }
 }
