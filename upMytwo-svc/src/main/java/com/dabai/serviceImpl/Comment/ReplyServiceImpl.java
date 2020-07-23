@@ -7,20 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.stereotype.Component;
 
-/**  
-* @author dabai: 
-
-* 类说明  ReplyService实现类
-*/
+/**
+ * @author dabai:
+ * <p>
+ * 类说明  ReplyService实现类
+ */
 @DubboService
 @Component
 public class ReplyServiceImpl implements ReplyService {
-	@Autowired
-	private ReplyMapper replyMapper;
+    @Autowired
+    private ReplyMapper replyMapper;
 
-	@Override
-	public boolean addReply(Reply reply) {
-		return replyMapper.addReply(reply)==1;
-	}
+    @Override
+    public boolean addReply(Reply reply) {
+        return replyMapper.addReply(reply) == 1;
+    }
 
 }

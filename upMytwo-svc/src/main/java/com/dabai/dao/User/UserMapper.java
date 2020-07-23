@@ -11,35 +11,35 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
-	 int insertUser(User user);
+    int insertUser(User user);
 
-	 int updateUser(User user);
+    int updateUser(User user);
 
-	 User findUserByUsername(String username);
+    User findUserByUsername(String username);
 
-	 User findUserByEmail(String emali);
+    User findUserByEmail(String emali);
 
-	 int updateUserActive(User user);
+    int updateUserActive(User user);
 
-	 User findUserByFirst(User user);
+    User findUserByFirst(User user);
 
-	 Integer sayHello();
+    Integer sayHello();
 
-	 int checkUsername(String username);
+    int checkUsername(String username);
 
-	 String getUserIdByUsernamePassword(User u);
+    String getUserIdByUsernamePassword(User u);
 
-	 User findUserByNameId(String username, String userid);
+    User findUserByNameId(String username, String userid);
 
-	 OtherUserInfo findOtherUser(String uid);
+    OtherUserInfo findOtherUser(String uid);
 
-	 Integer getUserCount();
+    Integer getUserCount();
 
-	List<OtherUserInfo> findUserList(HashMap<String, Object> map);
+    List<OtherUserInfo> findUserList(HashMap<String, Object> map);
 
-	User findUserById(String uid);
+    User findUserById(String uid);
 
-	int authenticSchoolUser(SchoolUser su);
+    int authenticSchoolUser(SchoolUser su);
 
 
 }

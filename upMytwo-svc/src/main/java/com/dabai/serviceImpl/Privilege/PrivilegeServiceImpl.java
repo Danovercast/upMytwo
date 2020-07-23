@@ -8,32 +8,32 @@ import org.apache.dubbo.config.annotation.DubboService;
 
 import java.util.List;
 
-/**  
-* @author dabai: 
-
-* 类说明  PrivilegeService实现类
-*/
+/**
+ * @author dabai:
+ * <p>
+ * 类说明  PrivilegeService实现类
+ */
 @DubboService
 public class PrivilegeServiceImpl implements PrivilegeService {
-	
-	@Autowired
-	private PrivilegeMapper privilegeMapper;
 
-	@Override
-	public Boolean insertPrivilege(Privilege privilege) {
-		return privilegeMapper.insertPrivilege(privilege)==1;
+    @Autowired
+    private PrivilegeMapper privilegeMapper;
 
-	}
+    @Override
+    public Boolean insertPrivilege(Privilege privilege) {
+        return privilegeMapper.insertPrivilege(privilege) == 1;
 
-	@Override
-	public Boolean updatePrivilege(Privilege privilege) {
-		return privilegeMapper.updatePrivilege(privilege)==1;
+    }
 
-	}
+    @Override
+    public Boolean updatePrivilege(Privilege privilege) {
+        return privilegeMapper.updatePrivilege(privilege) == 1;
 
-	@Override
-	public List<Privilege> findAllPrivilege() {
-		return privilegeMapper.findAllPrivilege();
-	}
+    }
+
+    @Override
+    public List<Privilege> findAllPrivilege() {
+        return privilegeMapper.findAllPrivilege();
+    }
 
 }

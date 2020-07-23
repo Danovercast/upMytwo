@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.dabai.dao.User.LoginHistoryMapper" >
-  <insert id="insertLoginHistory" parameterType="com.dabai.dto.SomeInfo.LoginHistory" >
+<mapper namespace="com.dabai.dao.User.LoginHistoryMapper">
+    <insert id="insertLoginHistory" parameterType="com.dabai.dto.SomeInfo.LoginHistory">
     insert into login_history (id, user_id, login_time
       )
     values (#{id,jdbcType=VARCHAR}, #{user_id,jdbcType=VARCHAR}, #{login_time,jdbcType=TIMESTAMP}
       )
   </insert>
-  <delete id="deleteLoginHistoryById" parameterType="com.dabai.dto.SomeInfo.LoginHistory" >
+    <delete id="deleteLoginHistoryById" parameterType="com.dabai.dto.SomeInfo.LoginHistory">
     delete from login_history
     where id = #{id,jdbcType=VARCHAR}
     and user_id=#{user_id,jdbcType=VARCHAR}
   </delete>
-  <select id="findUserLoginHistory"  resultType="com.dabai.dto.SomeInfo.LoginHistory">
+    <select id="findUserLoginHistory" resultType="com.dabai.dto.SomeInfo.LoginHistory">
   	select * from
   	login_history
   	where user_id=#{0}
   	limit #{1},#{2}
   </select>
-  <select id="getCountByUser" parameterType="java.lang.String" resultType="java.lang.Integer">
+    <select id="getCountByUser" parameterType="java.lang.String" resultType="java.lang.Integer">
   	select count(*)
   	from login_history
   	where user_id=#{user_id}
   </select>
-  </mapper>
+</mapper>

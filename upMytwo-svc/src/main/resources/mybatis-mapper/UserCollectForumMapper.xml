@@ -1,64 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.dabai.dao.User.UserCollectForumMapper" >
-  	<resultMap type="com.dabai.dto.SomeInfo.ForumInfo" id="forumInfo">
-		<result column="forum_id" property="forumid" />
-		<result column="author_id" property="authorid" />
-		<result column="institution_id" property="institutionid" />
-		<result column="institution_name" property="institutionname" />
-		<result column="username" property="authorname" />
-		<result column="image" property="image" />
-		<result column="create_time" property="createtime" />
-		<result column="description" property="description" />
-		<result column="title" property="title" />
-	</resultMap>
-  <insert id="insertUserCollectForum" parameterType="com.dabai.dto.User.UserCollectForum" >
-    insert ignore into user_collect_forum
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-     
-      <if test="forum_id != null" >
-        forum_id,
-      </if>
-      <if test="user_id != null" >
-        user_id,
-      </if>
-      <if test="is_collect != null" >
-        is_collect,
-      </if>
-      <if test="create_time != null" >
-        create_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="forum_id != null" >
-        #{forum_id,jdbcType=BIGINT},
-      </if>
-      <if test="user_id != null" >
-        #{user_id,jdbcType=VARCHAR},
-      </if>
-      <if test="is_collect != null" >
-        #{is_collect,jdbcType=BIT},
-      </if>
-      <if test="create_time != null" >
-        #{create_time,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateUserCollectForumById" parameterType="com.dabai.dto.User.UserCollectForum" >
-    update user_collect_forum
-    <set >
-      <if test="is_collect != null" >
-        is_collect = #{is_collect,jdbcType=BIT},
-      </if>
-      <if test="create_time != null" >
-        create_time = #{create_time,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where forum_id=#{forum_id}
-    and
-    user_id=#{user_id}
-  </update>
-  <select id="findUserCollectForumList"  resultMap="forumInfo">
+<mapper namespace="com.dabai.dao.User.UserCollectForumMapper">
+    <resultMap type="com.dabai.dto.SomeInfo.ForumInfo" id="forumInfo">
+        <result column="forum_id" property="forumid"/>
+        <result column="author_id" property="authorid"/>
+        <result column="institution_id" property="institutionid"/>
+        <result column="institution_name" property="institutionname"/>
+        <result column="username" property="authorname"/>
+        <result column="image" property="image"/>
+        <result column="create_time" property="createtime"/>
+        <result column="description" property="description"/>
+        <result column="title" property="title"/>
+    </resultMap>
+    <insert id="insertUserCollectForum" parameterType="com.dabai.dto.User.UserCollectForum">
+        insert ignore into user_collect_forum
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="forum_id != null">
+                forum_id,
+            </if>
+            <if test="user_id != null">
+                user_id,
+            </if>
+            <if test="is_collect != null">
+                is_collect,
+            </if>
+            <if test="create_time != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="forum_id != null">
+                #{forum_id,jdbcType=BIGINT},
+            </if>
+            <if test="user_id != null">
+                #{user_id,jdbcType=VARCHAR},
+            </if>
+            <if test="is_collect != null">
+                #{is_collect,jdbcType=BIT},
+            </if>
+            <if test="create_time != null">
+                #{create_time,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateUserCollectForumById" parameterType="com.dabai.dto.User.UserCollectForum">
+        update user_collect_forum
+        <set>
+            <if test="is_collect != null">
+                is_collect = #{is_collect,jdbcType=BIT},
+            </if>
+            <if test="create_time != null">
+                create_time = #{create_time,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where forum_id=#{forum_id}
+        and
+        user_id=#{user_id}
+    </update>
+    <select id="findUserCollectForumList" resultMap="forumInfo">
 select 
 	f.forum_id,
 	f.author_id,
@@ -83,17 +83,17 @@ order by ucf.create_time
 asc
 	limit #{1},#{2}
   </select>
-  <select id="getCountByUserId" parameterType="java.lang.String" resultType="java.lang.Integer">
+    <select id="getCountByUserId" parameterType="java.lang.String" resultType="java.lang.Integer">
   	select count(*)
   	from 
   	user_collect_forum
   	where user_id=#{user_id}
   </select>
-  <select id="checkIsCollect" parameterType="java.util.Map" resultType="java.lang.Boolean">
+    <select id="checkIsCollect" parameterType="java.util.Map" resultType="java.lang.Boolean">
   	select is_collect
   	from user_collect_forum
   	where forum_id=#{forumid}
   	and
   	user_id=#{userid}
   </select>
-  </mapper>
+</mapper>

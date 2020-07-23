@@ -1,61 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.dabai.dao.Comment.FeedBackMapper">
-	<select id="findFeedBackList" resultType="com.dabai.dto.SomeInfo.FeedBack">
+    <select id="findFeedBackList" resultType="com.dabai.dto.SomeInfo.FeedBack">
 		select * from feedback
 		where userid=#{0}
 		limit #{1},6
 	</select>
-	<select id="findById" resultType="com.dabai.dto.SomeInfo.FeedBack">
+    <select id="findById" resultType="com.dabai.dto.SomeInfo.FeedBack">
 		select * from feedback
 		where id=#{0}
 	</select>
-	<select id="getNearFeedBackList"  resultType="com.dabai.dto.SomeInfo.FeedBack">
+    <select id="getNearFeedBackList" resultType="com.dabai.dto.SomeInfo.FeedBack">
 		select * from feedback
 		order by time desc
 		limit 0,3
 	</select>
-	<insert id="addFeedBack" parameterType="com.dabai.dto.SomeInfo.FeedBack" useGeneratedKeys="true" keyProperty="id">
-		insert into feedback
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="userid!= null">
-				userid,
-			</if>
-			<if test="stunumber!= null">
-				stunumber,
-			</if>
-			<if test="picture!= null">
-				picture,
-			</if>
-			<if test="content!= null">
-				content,
-			</if>
-			<if test="time!= null">
-				time,
-			</if>
-			<if test="category!= null">
-				category,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="userid != null">
-				#{userid,jdbcType=INTEGER},
-			</if>
-			<if test="stunumber != null">
-				#{stunumber,jdbcType=VARCHAR},
-			</if>
-			<if test="picture != null">
-				#{picture,jdbcType=VARCHAR},
-			</if>
-			<if test="content != null">
-				#{content,jdbcType=VARCHAR},
-			</if>
-			<if test="time != null">
-				#{time,jdbcType=TIMESTAMP},
-			</if>
-			<if test="category != null">
-				#{category,jdbcType=VARCHAR},
-			</if>
-		</trim>
-	</insert>
+    <insert id="addFeedBack" parameterType="com.dabai.dto.SomeInfo.FeedBack" useGeneratedKeys="true" keyProperty="id">
+        insert into feedback
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userid!= null">
+                userid,
+            </if>
+            <if test="stunumber!= null">
+                stunumber,
+            </if>
+            <if test="picture!= null">
+                picture,
+            </if>
+            <if test="content!= null">
+                content,
+            </if>
+            <if test="time!= null">
+                time,
+            </if>
+            <if test="category!= null">
+                category,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="stunumber != null">
+                #{stunumber,jdbcType=VARCHAR},
+            </if>
+            <if test="picture != null">
+                #{picture,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="time != null">
+                #{time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="category != null">
+                #{category,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
 </mapper>

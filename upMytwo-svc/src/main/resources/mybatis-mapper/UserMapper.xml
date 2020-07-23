@@ -2,154 +2,154 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.dabai.dao.User.UserMapper">
- 	<resultMap type="com.dabai.dto.SomeInfo.OtherUserInfo" id="oui">
- 		<id column="user_id" property="uid"/>
- 		<result column="institution_id" property="insid"/>
- 		<result column="institution_name" property="insname"/>
- 		<result column="role_name" property="rolename"/>
- 		<result column="username" property="uname"/>
- 		<result column="birthday" property="birthday"/>
- 		<result column="image" property="image"/>
- 		<result column="gender" property="gender"/>
- 		<result column="signature" property="signature"/>
- 		<result column="register" property="register"/>
- 	</resultMap>
-	<insert id="insertUser" parameterType="com.dabai.dto.User.User" >
-    insert  ignore into user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="user_id != null" >
-        user_id,
-      </if>
-      <if test="role_id != null" >
-        role_id,
-      </if>
-      <if test="institution_id != null" >
-        institution_id,
-      </if>
-      <if test="username != null" >
-        username,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="email != null" >
-        email,
-      </if>
-      <if test="telephone != null" >
-        telephone,
-      </if>
-      <if test="birthday != null" >
-        birthday,
-      </if>
-      <if test="image != null" >
-        image,
-      </if>
-      <if test="gender != null" >
-        gender,
-      </if>
-      <if test="signature != null" >
-        signature,
-      </if>
-      <if test="activecode != null" >
-        activecode,
-      </if>
-      <if test="register != null" >
-        register,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="user_id != null" >
-        #{user_id,jdbcType=VARCHAR},
-      </if>
-      <if test="role_id != null" >
-        #{role_id,jdbcType=INTEGER},
-      </if>
-      <if test="institution_id != null" >
-        #{institution_id,jdbcType=BIGINT},
-      </if>
-      <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="telephone != null" >
-        #{telephone,jdbcType=VARCHAR},
-      </if>
-      <if test="birthday != null" >
-        #{birthday,jdbcType=DATE},
-      </if>
-      <if test="image != null" >
-        #{image,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null" >
-        #{gender,jdbcType=INTEGER},
-      </if>
-      <if test="signature != null" >
-        #{signature,jdbcType=CLOB},
-      </if>
-      <if test="activecode != null" >
-        #{activecode,jdbcType=VARCHAR},
-      </if>
-      <if test="register != null" >
-        #{register,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-	<update id="updateUser" parameterType="com.dabai.dto.User.User" >
-    update ignore user
-    <set >
-      <if test="role_id != null" >
-        role_id = #{role_id,jdbcType=INTEGER},
-      </if>
-      <if test="institution_id != null" >
-        institution_id = #{institution_id,jdbcType=BIGINT},
-      </if>
-      <if test="username != null" >
-        username = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="telephone != null" >
-        telephone = #{telephone,jdbcType=VARCHAR},
-      </if>
-      <if test="birthday != null" >
-        birthday = #{birthday,jdbcType=DATE},
-      </if>
-      <if test="image != null" >
-        image = #{image,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null" >
-        gender = #{gender,jdbcType=INTEGER},
-      </if>
-      <if test="signature != null" >
-        signature = #{signature,jdbcType=CLOB}
-      </if>
-    </set>
-    <where>
-    	<if test="user_id!=null">
-    		user_id = #{user_id,jdbcType=VARCHAR}
-    	</if>
-    </where>
-  </update>
-	<select id="findUserByUsername" parameterType="java.lang.String" resultType="com.dabai.dto.User.User">
+    <resultMap type="com.dabai.dto.SomeInfo.OtherUserInfo" id="oui">
+        <id column="user_id" property="uid"/>
+        <result column="institution_id" property="insid"/>
+        <result column="institution_name" property="insname"/>
+        <result column="role_name" property="rolename"/>
+        <result column="username" property="uname"/>
+        <result column="birthday" property="birthday"/>
+        <result column="image" property="image"/>
+        <result column="gender" property="gender"/>
+        <result column="signature" property="signature"/>
+        <result column="register" property="register"/>
+    </resultMap>
+    <insert id="insertUser" parameterType="com.dabai.dto.User.User">
+        insert ignore into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="user_id != null">
+                user_id,
+            </if>
+            <if test="role_id != null">
+                role_id,
+            </if>
+            <if test="institution_id != null">
+                institution_id,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="telephone != null">
+                telephone,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="signature != null">
+                signature,
+            </if>
+            <if test="activecode != null">
+                activecode,
+            </if>
+            <if test="register != null">
+                register,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="user_id != null">
+                #{user_id,jdbcType=VARCHAR},
+            </if>
+            <if test="role_id != null">
+                #{role_id,jdbcType=INTEGER},
+            </if>
+            <if test="institution_id != null">
+                #{institution_id,jdbcType=BIGINT},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone != null">
+                #{telephone,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                #{birthday,jdbcType=DATE},
+            </if>
+            <if test="image != null">
+                #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                #{gender,jdbcType=INTEGER},
+            </if>
+            <if test="signature != null">
+                #{signature,jdbcType=CLOB},
+            </if>
+            <if test="activecode != null">
+                #{activecode,jdbcType=VARCHAR},
+            </if>
+            <if test="register != null">
+                #{register,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateUser" parameterType="com.dabai.dto.User.User">
+        update ignore user
+        <set>
+            <if test="role_id != null">
+                role_id = #{role_id,jdbcType=INTEGER},
+            </if>
+            <if test="institution_id != null">
+                institution_id = #{institution_id,jdbcType=BIGINT},
+            </if>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone != null">
+                telephone = #{telephone,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday,jdbcType=DATE},
+            </if>
+            <if test="image != null">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                gender = #{gender,jdbcType=INTEGER},
+            </if>
+            <if test="signature != null">
+                signature = #{signature,jdbcType=CLOB}
+            </if>
+        </set>
+        <where>
+            <if test="user_id!=null">
+                user_id = #{user_id,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </update>
+    <select id="findUserByUsername" parameterType="java.lang.String" resultType="com.dabai.dto.User.User">
 		select * from 
 		user
 		where username=#{username,jdbcType=VARCHAR}
 	</select>
-	<select id="findUserByEmail" parameterType="java.lang.String" resultType="com.dabai.dto.User.User">
+    <select id="findUserByEmail" parameterType="java.lang.String" resultType="com.dabai.dto.User.User">
 		select * from
 		user
 		where email=#{email}
 	</select>
-	<update id="updateUserActive" parameterType="com.dabai.dto.User.User">
+    <update id="updateUserActive" parameterType="com.dabai.dto.User.User">
 		update user
 		set role_id=6
 		where activecode=#{activecode}
@@ -158,7 +158,7 @@
 		and
 		password=#{password}
 	</update>
-	<select id="findUserByFirst" parameterType="com.dabai.dto.User.User" resultType="com.dabai.dto.User.User">
+    <select id="findUserByFirst" parameterType="com.dabai.dto.User.User" resultType="com.dabai.dto.User.User">
 		select * from
 		user
 		where username=#{username}
@@ -167,31 +167,31 @@
 		and
 		activecode=#{activecode}
 	</select>
-	<select id="sayHello" resultType="java.lang.Integer">
+    <select id="sayHello" resultType="java.lang.Integer">
 		select count(*)
 		from user
 	</select>
-	<select id="checkUsername" resultType="java.lang.Integer" parameterType="java.lang.String">
+    <select id="checkUsername" resultType="java.lang.Integer" parameterType="java.lang.String">
 		select count(*)
 		from
 		user
 		where username=#{username}
 	</select>
-	<select id="getUserIdByUsernamePassword" parameterType="com.dabai.dto.User.User" resultType="java.lang.String">
+    <select id="getUserIdByUsernamePassword" parameterType="com.dabai.dto.User.User" resultType="java.lang.String">
 		select user_id
 		from user
 		where user_id=#{user_id,jdbcType=VARCHAR}
 		and
 		password=#{password,jdbcType=VARCHAR}
 	</select>
-	<select id="findUserByNameId" resultType="com.dabai.dto.User.User">
+    <select id="findUserByNameId" resultType="com.dabai.dto.User.User">
 		select * 
 		from user
 		where username=#{0}
 		and
 		user_id=#{1}
 	</select>
-	<select id="findOtherUser" parameterType="java.lang.String" resultMap="oui">
+    <select id="findOtherUser" parameterType="java.lang.String" resultMap="oui">
 		select u.user_id,u.institution_id,u.username,u.birthday,u.image,
 		u.gender,u.signature,u.register,i.institution_name,r.role_name
 		from user u,institution i,role r
@@ -199,11 +199,11 @@
 		and u.institution_id=i.institution_id
 		and u.user_id=#{uid}
 	</select>
-	<select id="getUserCount" resultType="java.lang.Integer">
+    <select id="getUserCount" resultType="java.lang.Integer">
 		select count(*)
 		from user
 	</select>
-	<select id="findUserList" parameterType="java.util.Map" resultMap="oui">
+    <select id="findUserList" parameterType="java.util.Map" resultMap="oui">
 		select u.user_id,u.institution_id,u.username,u.birthday,
 		u.gender,u.signature,u.register,i.institution_name,r.role_name
 		from user u,institution i,role r
@@ -212,12 +212,12 @@
 		u.role_id=r.role_id
 		limit #{start},#{end}
 	</select>
-	<select id="findUserById" parameterType="java.lang.String" resultType="com.dabai.dto.User.User">
+    <select id="findUserById" parameterType="java.lang.String" resultType="com.dabai.dto.User.User">
 		select * from 
 		user
 		where user_id=#{uid}
 	</select>
-	<select id="authenticSchoolUser" parameterType="com.dabai.dto.User.SchoolUser" resultType="java.lang.Integer">
+    <select id="authenticSchoolUser" parameterType="com.dabai.dto.User.SchoolUser" resultType="java.lang.Integer">
 		select count(*) from schooluser
 		where stunumber=#{stunumber}
 		and

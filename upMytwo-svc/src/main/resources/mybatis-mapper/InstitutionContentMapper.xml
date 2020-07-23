@@ -1,103 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.dabai.dao.Institution.InstitutionContentMapper" >
-  <insert id="insertInstitutionContent" parameterType="com.dabai.dto.Institution.InstitutionContent" >
-    insert into institution_content
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="institution_id != null" >
-        institution_id,
-      </if>
-      <if test="image != null" >
-        image,
-      </if>
-      <if test="blg_image1 != null" >
-        blg_image1,
-      </if>
-      <if test="blg_image2 != null" >
-        blg_image2,
-      </if>
-      <if test="blg_image3 != null" >
-        blg_image3,
-      </if>
-      <if test="description != null" >
-        description,
-      </if>
-      <if test="state != null" >
-        state,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="institution_id != null" >
-        #{institution_id,jdbcType=BIGINT},
-      </if>
-      <if test="image != null" >
-        #{image,jdbcType=VARCHAR},
-      </if>
-      <if test="blg_image1 != null" >
-        #{blg_image1,jdbcType=VARCHAR},
-      </if>
-      <if test="blg_image2 != null" >
-        #{blg_image2,jdbcType=VARCHAR},
-      </if>
-      <if test="blg_image3 != null" >
-        #{blg_image3,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null" >
-        #{description,jdbcType=CLOB},
-      </if>
-      <if test="state != null" >
-        #{state,jdbcType=BIT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateInstitutionContent" parameterType="com.dabai.dto.Institution.InstitutionContent" >
-    update institution_content
-    <set >
-      <if test="institution_id != null" >
-        institution_id = #{institution_id,jdbcType=BIGINT},
-      </if>
-      <if test="image != null" >
-        image = #{image,jdbcType=VARCHAR},
-      </if>
-      <if test="blg_image1 != null" >
-        blg_image1 = #{blg_image1,jdbcType=VARCHAR},
-      </if>
-      <if test="blg_image2 != null" >
-        blg_image2 = #{blg_image2,jdbcType=VARCHAR},
-      </if>
-      <if test="blg_image3 != null" >
-        blg_image3 = #{blg_image3,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null" >
-        description = #{description,jdbcType=CLOB},
-      </if>
-      <if test="state != null" >
-        state = #{state,jdbcType=BIT},
-      </if>
-    </set>
-    where id=#{id}
-  </update>
-  <select id="findInstitutionContentByInstitutionId" parameterType="java.lang.Long" resultType="com.dabai.dto.Institution.InstitutionContent">
+<mapper namespace="com.dabai.dao.Institution.InstitutionContentMapper">
+    <insert id="insertInstitutionContent" parameterType="com.dabai.dto.Institution.InstitutionContent">
+        insert into institution_content
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="institution_id != null">
+                institution_id,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+            <if test="blg_image1 != null">
+                blg_image1,
+            </if>
+            <if test="blg_image2 != null">
+                blg_image2,
+            </if>
+            <if test="blg_image3 != null">
+                blg_image3,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="institution_id != null">
+                #{institution_id,jdbcType=BIGINT},
+            </if>
+            <if test="image != null">
+                #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="blg_image1 != null">
+                #{blg_image1,jdbcType=VARCHAR},
+            </if>
+            <if test="blg_image2 != null">
+                #{blg_image2,jdbcType=VARCHAR},
+            </if>
+            <if test="blg_image3 != null">
+                #{blg_image3,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=CLOB},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateInstitutionContent" parameterType="com.dabai.dto.Institution.InstitutionContent">
+        update institution_content
+        <set>
+            <if test="institution_id != null">
+                institution_id = #{institution_id,jdbcType=BIGINT},
+            </if>
+            <if test="image != null">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="blg_image1 != null">
+                blg_image1 = #{blg_image1,jdbcType=VARCHAR},
+            </if>
+            <if test="blg_image2 != null">
+                blg_image2 = #{blg_image2,jdbcType=VARCHAR},
+            </if>
+            <if test="blg_image3 != null">
+                blg_image3 = #{blg_image3,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=CLOB},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=BIT},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <select id="findInstitutionContentByInstitutionId" parameterType="java.lang.Long"
+            resultType="com.dabai.dto.Institution.InstitutionContent">
   	select * from 
   	institution_content
   	where institution_id=#{institution_id}
   	and state=1
   	limit 0,1
   </select>
-  <select id="findInstitutionContentListByInstitutionIds" resultType="com.dabai.dto.Institution.InstitutionContent">
-  	select * from
-  	institution_content
-  	where state=1
-  	and
-  	institution_id in
-  	<foreach collection="array" close=")" open="(" separator="," item="institution_id" index="index">
-  		#{institution_id}
-  	</foreach>
-  </select>
-  </mapper>
+    <select id="findInstitutionContentListByInstitutionIds" resultType="com.dabai.dto.Institution.InstitutionContent">
+        select * from
+        institution_content
+        where state=1
+        and
+        institution_id in
+        <foreach collection="array" close=")" open="(" separator="," item="institution_id" index="index">
+            #{institution_id}
+        </foreach>
+    </select>
+</mapper>

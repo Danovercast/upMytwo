@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.dabai.dao.User.UserFriendMapper">
-	<resultMap type="com.dabai.dto.SomeInfo.FriendInfo" id="sendFriendInfo">
-		<id column="id" property="id" jdbcType="VARCHAR" />
-		<result column="user1_id" property="userid" jdbcType="VARCHAR" />
-		<result column="is_friend" property="isfriend" jdbcType="BIT" />
-		<result column="username" property="username" jdbcType="VARCHAR" />
-		<result column="create_time" property="createtime" jdbcType="TIMESTAMP" />
-		<result column="admit_time" property="admittime" jdbcType="TIMESTAMP" />
-		<result column="gender" property="gender" jdbcType="INTEGER" />
-		<result column="signature" property="signature" jdbcType="VARCHAR" />
-		<result column="request" property="request" jdbcType="VARCHAR" />
-		<result column="image" property="image" jdbcType="VARCHAR" />
-	</resultMap>
-	<resultMap type="com.dabai.dto.SomeInfo.FriendInfo" id="getFriendInfo">
-		<id column="id" property="id" jdbcType="VARCHAR" />
-		<result column="user2_id" property="userid" jdbcType="VARCHAR" />
-		<result column="is_friend" property="isfriend" jdbcType="BIT" />
-		<result column="username" property="username" jdbcType="VARCHAR" />
-		<result column="create_time" property="createtime" jdbcType="TIMESTAMP" />
-		<result column="admit_time" property="admittime" jdbcType="TIMESTAMP" />
-		<result column="gender" property="gender" jdbcType="INTEGER" />
-		<result column="signature" property="signature" jdbcType="VARCHAR" />
-	 	<result column="request" property="request" jdbcType="VARCHAR" />
-  		<result column="image" property="image" jdbcType="VARCHAR" />
-	</resultMap>
-	<resultMap type="com.dabai.dto.SomeInfo.OtherUserInfo" id="oui">
- 		<id column="user_id" property="uid"/>
- 		<result column="username" property="uname"/>
- 		<result column="image" property="image"/>
- 		<result column="gender" property="gender"/>
- 		<result column="signature" property="signature"/>
- 	</resultMap>
-	<insert id="insertUserFriend" parameterType="com.dabai.dto.User.UserFriend">
+    <resultMap type="com.dabai.dto.SomeInfo.FriendInfo" id="sendFriendInfo">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="user1_id" property="userid" jdbcType="VARCHAR"/>
+        <result column="is_friend" property="isfriend" jdbcType="BIT"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createtime" jdbcType="TIMESTAMP"/>
+        <result column="admit_time" property="admittime" jdbcType="TIMESTAMP"/>
+        <result column="gender" property="gender" jdbcType="INTEGER"/>
+        <result column="signature" property="signature" jdbcType="VARCHAR"/>
+        <result column="request" property="request" jdbcType="VARCHAR"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap type="com.dabai.dto.SomeInfo.FriendInfo" id="getFriendInfo">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="user2_id" property="userid" jdbcType="VARCHAR"/>
+        <result column="is_friend" property="isfriend" jdbcType="BIT"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createtime" jdbcType="TIMESTAMP"/>
+        <result column="admit_time" property="admittime" jdbcType="TIMESTAMP"/>
+        <result column="gender" property="gender" jdbcType="INTEGER"/>
+        <result column="signature" property="signature" jdbcType="VARCHAR"/>
+        <result column="request" property="request" jdbcType="VARCHAR"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap type="com.dabai.dto.SomeInfo.OtherUserInfo" id="oui">
+        <id column="user_id" property="uid"/>
+        <result column="username" property="uname"/>
+        <result column="image" property="image"/>
+        <result column="gender" property="gender"/>
+        <result column="signature" property="signature"/>
+    </resultMap>
+    <insert id="insertUserFriend" parameterType="com.dabai.dto.User.UserFriend">
 		insert ignore into user_friend
 		(id, user1_id, user2_id, is_friend, ignorethis, create_time,request)
 		values (
@@ -44,7 +44,7 @@
 		#{create_time,jdbcType=TIMESTAMP},
 		#{request,jdbcType=VARCHAR} )
 	</insert>
-	<select id="findSend" parameterType="java.util.Map" resultMap="sendFriendInfo">
+    <select id="findSend" parameterType="java.util.Map" resultMap="sendFriendInfo">
 		select
 		uf.id,uf.user1_id,uf.is_friend,uf.create_time,uf.admit_time,uf.request,u.username,u.gender,u.signature,u.image
 		from user u,user_friend uf
@@ -52,7 +52,7 @@
 		and u.user_id=uf.user2_id
 		limit #{start},#{end}
 	</select>
-	<select id="findGet" parameterType="java.util.Map" resultMap="getFriendInfo">
+    <select id="findGet" parameterType="java.util.Map" resultMap="getFriendInfo">
 		select
 		uf.id,uf.user2_id,uf.is_friend,uf.create_time,uf.admit_time,uf.request,u.username,u.gender,u.signature,u.image
 		from user u,user_friend uf
@@ -61,47 +61,47 @@
 		and u.user_id=uf.user1_id
 		limit #{start},#{end}
 	</select>
-	<update id="updateUserFriend" parameterType="com.dabai.dto.User.UserFriend">
-		update user_friend
-		<set>
-			<if test="ignorethis != null">
-				ignorethis = #{ignorethis,jdbcType=BIT},
-			</if>
-			<if test="is_friend != null">
-				is_friend = #{is_friend,jdbcType=BIT},
-			</if>
-			<if test="create_time != null">
-				create_time = #{create_time,jdbcType=TIMESTAMP},
-			</if>
-			<if test="admit_time != null">
-				admit_time = #{admit_time,jdbcType=TIMESTAMP},
-			</if>
-		</set>
-		<where>
-			<if test="id!=null">
-				id=#{id}
-			</if>
-			<if test="user1_id!=null">
-			    and	user1_id=#{user1_id}
-			</if>
-			<if test="user2_id!=null">
-				and user2_id=#{user2_id}
-			</if>
-		</where>
-	</update>
-	<select id="getGetCount" parameterType="java.lang.String"
-		resultType="java.lang.Integer">
+    <update id="updateUserFriend" parameterType="com.dabai.dto.User.UserFriend">
+        update user_friend
+        <set>
+            <if test="ignorethis != null">
+                ignorethis = #{ignorethis,jdbcType=BIT},
+            </if>
+            <if test="is_friend != null">
+                is_friend = #{is_friend,jdbcType=BIT},
+            </if>
+            <if test="create_time != null">
+                create_time = #{create_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="admit_time != null">
+                admit_time = #{admit_time,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <where>
+            <if test="id!=null">
+                id=#{id}
+            </if>
+            <if test="user1_id!=null">
+                and user1_id=#{user1_id}
+            </if>
+            <if test="user2_id!=null">
+                and user2_id=#{user2_id}
+            </if>
+        </where>
+    </update>
+    <select id="getGetCount" parameterType="java.lang.String"
+            resultType="java.lang.Integer">
 		select count(*)
 		from user_friend
 		where user2_id=#{user_id}
 	</select>
-	<select id="getSendCount" parameterType="java.lang.String"
-		resultType="java.lang.Integer">
+    <select id="getSendCount" parameterType="java.lang.String"
+            resultType="java.lang.Integer">
 		select count(*)
 		from user_friend
 		where user1_id=#{user_id}
 	</select>
-	<select id="findRealByUid" resultType="java.lang.Integer">
+    <select id="findRealByUid" resultType="java.lang.Integer">
 		select count(*)
 		from user_friend
 		where user1_id=#{0}
@@ -116,7 +116,7 @@
 		and
 		is_friend=1
 	</select>
-	<select id="getMyFriendCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+    <select id="getMyFriendCount" parameterType="java.lang.String" resultType="java.lang.Integer">
 		select count(*)
 		from user_friend
 		where is_friend=1
@@ -126,7 +126,7 @@
 		and
 		user2_id=#{0}
 	</select>
-		<select id="findFriendInfo" parameterType="java.util.Map" resultMap="oui">
+    <select id="findFriendInfo" parameterType="java.util.Map" resultMap="oui">
 		select u.user_id,u.username,u.image,
 		u.gender,u.signature
 		from user u,user_friend uf

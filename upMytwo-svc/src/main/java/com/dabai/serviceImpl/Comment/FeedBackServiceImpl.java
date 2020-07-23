@@ -10,37 +10,37 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**  
-* @author dabai: 
-
-* 类说明  FeedBackService实现类
-*/
+/**
+ * @author dabai:
+ * <p>
+ * 类说明  FeedBackService实现类
+ */
 @DubboService
 @Component
 public class FeedBackServiceImpl implements FeedBackService {
-	@Autowired
-	private FeedBackMapper fbMapper;
+    @Autowired
+    private FeedBackMapper fbMapper;
 
-	
-	@Override
-	public List<FeedBack> findMyFeedBack(String userid, Integer currentpage) {
-		return fbMapper.findFeedBackList(userid,(currentpage-1)*6);
-	}
 
-	@Override
-	public FeedBack findFeedBackById(Integer id) {
-		 
-		return fbMapper.findById(id);
-	}
+    @Override
+    public List<FeedBack> findMyFeedBack(String userid, Integer currentpage) {
+        return fbMapper.findFeedBackList(userid, (currentpage - 1) * 6);
+    }
 
-	@Override
-	public List<FeedBack> getNearFeedBackList() {
-		return fbMapper.getNearFeedBackList();
-	}
+    @Override
+    public FeedBack findFeedBackById(Integer id) {
 
-	@Override
-	public Integer addFeedBack(FeedBack fb) {
-		return fbMapper.addFeedBack(fb);
-	}
+        return fbMapper.findById(id);
+    }
+
+    @Override
+    public List<FeedBack> getNearFeedBackList() {
+        return fbMapper.getNearFeedBackList();
+    }
+
+    @Override
+    public Integer addFeedBack(FeedBack fb) {
+        return fbMapper.addFeedBack(fb);
+    }
 
 }
