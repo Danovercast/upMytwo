@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>${user.username}的评论</title>
+<link rel="stylesheet" href="../css/amazeui.min.css">
+<link rel="stylesheet" href="../css/app.css">
+<script src="../js/jquery-3.3.1.min.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body id="blog" style="background-color: #f9f9f9;">
+
+	<header class="am-g am-g-fixed blog-fixed blog-text-center blog-header">
+		<div class="am-u-sm-8 am-u-sm-centered">
+			<h2 class="am-hide-sm-only " style="backgroud-color:#17a2b8" id="showwhat">我的评论</h2>
+		</div>
+	</header>
+	<input type="hidden" value="${user.username}" id="uname">
+	<hr>
+	<nav class="am-g am-g-fixed blog-fixed blog-nav">
+		<button
+			class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only blog-button"
+			data-am-collapse="{target: '#blog-collapse'}">
+			<span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span>
+		</button>
+
+		<div class="am-collapse am-topbar-collapse" id="blog-collapse">
+			<ul class="am-nav am-nav-pills am-topbar-nav">
+				<li class="am-active"><a href="../html/index.html">首页</a></li>
+				<li class="am-dropdown" data-am-dropdown><a
+					class="am-dropdown-toggle" data-am-dropdown-toggle
+					href="javascript:;"> 我在论坛 <span class="am-icon-caret-down"></span>
+				</a>
+					<ul class="am-dropdown-content">
+						<li><a
+							href="" id="myforum">我的帖子</a></li>
+						<li><a href="#" id="mycomment" >我的评论</a></li>
+						<li><a href="#" id="myfriend">我的好友</a></li>
+						<li><a href="#" onclick="showCollect(1)">我的收藏</a></li>
+					</ul></li>
+				<li><a
+					href="" id="toeditme">修改信息</a></li>
+				<li><a href="#">我的随笔</a></li>
+			</ul>
+			<div  class="am-topbar-form am-topbar-right am-form-inline"
+				role="search">
+				<div class="am-form-group">
+					<input id="searchcomment" type="text" class="am-form-field am-input-sm"
+						placeholder="搜索">
+					<button class="btn  am-btn-default" onclick="searchcomment()" >Search</button>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<hr>
+
+
+	<div class="am-g am-g-fixed blog-fixed ">
+		<div class="am-u-md-8 am-u-sm-12 " id="maincontent">
+			 <#if list?? &&(list?size>0)>
+			<p class=''><h1 class='am-text-danger'>未查询到您的有关信息</h1></p>
+			<#else>
+			<#list list for ucommentInfo>
+			<article class="am-g blog-entry-article">
+				<div class="am-u-lg-8 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span><a href="../p/${ucommentInfo.forumid}" class="blog-color">${ucommentInfo.title}
+							&nbsp;</a></span> <span>@-${ucommentInfo.uname} &nbsp;</a></span>
+					<span>${ucommentInfo.createtime?string('yyyy年mm月dd日 HH时mm分ss秒')}</span>
+					<h1>
+						<a href="../p/${ucommentInfo.forumid}">${ucommentInfo.title}</a>
+					</h1>
+					<p>${ucommentInfo.details}</p>
+					<p>
+						<a href="" class="blog-continue">continue reading</a>
+					</p>
+				</div>
+			</article>
+			</#list>
+		</#if>
+			<ul class="am-pagination text-center" style="margin-legt:30px" id="pageul">
+				 
+			</ul>
+		 
+		</div>
+
+		<div class="am-u-md-4 am-u-sm-12 blog-sidebar">
+			<div class="blog-sidebar-widget blog-bor">
+				<h2 class="blog-text-center blog-title">
+					<input type="hidden" value="${user.user_id}" id="userid">
+				</h2>
+				<img src="../images/${user.image}" alt="about me" class="blog-entry-img">
+				<p>$user.username</p>
+				<p>$user.signature</p>
+			</div>
+
+
+			<div class="blog-sidebar-widget blog-bor">
+				<h2 class="blog-title">
+					<span>今日语录</span>
+				</h2>
+				<ul class="am-list">
+					<li><a href="#">每个人都有一个死角， 自己走不出来，别人也闯不进去。</a></li>
+					<li><a href="#">你不懂我，我不怪你。</a></li>
+					<li><a href="#">每个人都有一道伤口， 或深或浅，盖上布，以为不存在。</a></li>
+				</ul>
+			</div>
+		</div>
+		 <button id="showlogin" class="btn btn-primary btn-lg hide" data-toggle="modal" data-target="#loginmodal">开始演示模态框</button>
+<div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">验证身份过期 请登陆</h4>
+            </div>
+            <div class="modal-body">
+              <input type="text" class="form-control" placeholder="Email address or username" id="username"
+               autofocus  value="${user.username}"><div style="color: #FF3333"><b id="loginfailedinfo">请输入用户密码 </b></div>
+        <input type="password" class="form-control" id="password"   placeholder="Password" >
+			</div>
+            <div class="modal-footer">
+                <button type="button" id="closelogin" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="login()">login</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!-- 信息回显 -->
+		 <button id="somemsgbutton" class="btn btn-primary btn-lg hide" data-toggle="modal" data-target="#loginmodal">开始演示模态框</button>
+<div class="modal fade" id="somemsg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" >提示</h4>
+            </div>
+            <div class="modal-body" id="infomsg">
+              
+			</div>
+            <div class="modal-footer">
+                <button type="button" id="closelogin" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+		 
+	</div>
+	
+	 <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+	
+	<script src="../js/amazeui.min.js"></script>
+	<script src="../js/mycomment.js"></script>
+</body>
+</html>

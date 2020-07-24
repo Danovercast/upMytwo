@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<display-name>mytwo-total-web</display-name>
+
+	<welcome-file-list>
+		<welcome-file>/</welcome-file>
+	</welcome-file-list>
+	<error-page>
+		<error-code>400</error-code>
+		<location>/error.html</location>
+	</error-page>
+	<!-- 404 页面不存在错误 -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error.html</location>
+	</error-page>
+	<!-- 500 服务器内部错误 -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error.html</location>
+	</error-page>
+	<!-- java.lang.Exception异常错误,依据这个标记可定义多个类似错误提示 -->
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/error.html</location>
+	</error-page>
+	<!-- java.lang.NullPointerException异常错误,依据这个标记可定义多个类似错误提示 -->
+	<error-page>
+		<exception-type>java.lang.NullPointerException</exception-type>
+		<location>/error.html</location>
+	</error-page>
+ 
+	<error-page>
+		<exception-type>javax.servlet.ServletException</exception-type>
+		<location>/error.html</location>
+	</error-page> 
+	<filter>
+		<filter-name>shiroFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<init-param>
+			<!-- 该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理 -->
+			<param-name>targetFilterLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>shiroFilter</filter-name>
+		<!-- 匹配所有保证所有的请求都经过shiro -->
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- 解决post乱码 -->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- springmvc的前端控制器 -->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 加载配置文件 -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:springmvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<url-pattern>/</url-pattern><!-- 拦截所有 包括静态资源但不包括jsp -->
+	</servlet-mapping>
+	<filter>
+		<filter-name>jwtFilter</filter-name>
+		<filter-class>com.dabai.mytwo.auth.JwtInfoFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>jwtFilter</filter-name>
+		<url-pattern>/jwt/*</url-pattern>
+	</filter-mapping>
+	
+
+</web-app>
