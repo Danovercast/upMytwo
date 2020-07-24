@@ -12,3 +12,8 @@ dubbo:
   registry:
     #zookeeper注册中心地址
     address: zookeeper://localhost:2181
+
+spring:
+  freemarker:
+    template-loader-path: classpath:/static/WEB-INF/
+    suffix: .html
