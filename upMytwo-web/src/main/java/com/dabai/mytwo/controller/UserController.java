@@ -418,6 +418,10 @@ public class UserController {
         model.addAttribute("info", info);
         return "school/xiaonei";
     }
-
+    @RequestMapping("/hello")
+    public String hello(Map<String,Object> map){
+        map.put("name", "[Angel -- 守护天使]");
+        return "hello";
+    }
 
 }

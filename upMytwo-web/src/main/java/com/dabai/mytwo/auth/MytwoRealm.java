@@ -4,12 +4,14 @@ import com.dabai.dto.Privilege.Privilege;
 import api.Privilege.RolePrivilegeService;
 import api.User.UserService;
 import com.dabai.mytwo.util.JwtUtil;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -19,9 +21,9 @@ import java.util.List;
  * 类说明  实现realm功能
  */
 public class MytwoRealm extends AuthorizingRealm {
-    @Autowired
+    @DubboReference
     private UserService userService;
-    @Autowired
+    @DubboReference
     private RolePrivilegeService rolePrivilegeService;
 
     //授权
