@@ -84,11 +84,11 @@
     <select id="findForumListByUserId" resultType="com.dabai.dto.Forum.Forum">
 		select * from
 		forum
-		where author_id=#{0} and state!=0
+		where author_id=#{userId} and state!=0
 		order by create_time
 		desc
 		limit
-		#{1},#{2}
+		#{start},#{end}
 	</select>
     <select id="findForumListByInstitutionId" resultMap="forumInfo">
 		select

@@ -6,6 +6,7 @@ import com.dabai.dto.SomeInfo.PageInfo;
 import com.dabai.dto.Forum.Forum;
 import com.dabai.dto.Forum.HomeForum;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +18,7 @@ public interface ForumMapper {
 
     public int normalDeleteForumById(Long forum_id);
 
-    public List<Forum> findForumListByUserId(String user_id, Integer start, Integer end);
+    public List<Forum> findForumListByUserId(@Param("userId")String user_id,@Param("start") Integer start,@Param("end") Integer end);
 
     public List<ForumInfo> findForumListByInstitutionId(Map<String, Object> map);
 

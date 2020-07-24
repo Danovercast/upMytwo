@@ -4,6 +4,7 @@ package com.dabai.dao.Institution;
 import com.dabai.dto.Institution.Institution;
 import com.dabai.dto.Institution.InstitutionInfo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,9 +20,9 @@ public interface InstitutionMapper {
 
     int getCountInstitution();
 
-    List<Institution> findInstitutionList(Integer i, Integer pagesize);
+    List<Institution> findInstitutionList(@Param("i")Integer i,@Param("pagesize") Integer pagesize);
 
-    List<InstitutionInfo> findInstitutionInfo(Integer start, Integer end);
+    List<InstitutionInfo> findInstitutionInfo(@Param("start")Integer start,@Param("end") Integer end);
 
     InstitutionInfo getInstitutionInfoById(Long insid);
 

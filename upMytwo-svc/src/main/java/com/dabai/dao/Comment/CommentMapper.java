@@ -5,6 +5,7 @@ import com.dabai.dto.SomeInfo.CommentInfo;
 import com.dabai.dto.SomeInfo.UserCommentInfo;
 import com.dabai.dto.Comment.Comment;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -18,9 +19,9 @@ public interface CommentMapper {
 
     int normalDeleteCommentByForumId(Long forum_id);
 
-    List<CommentInfo> findCommentListByForumId(Long forum_id, Integer start, Integer end);
+    List<CommentInfo> findCommentListByForumId(@Param("forumId") Long forum_id, @Param("start")Integer start, @Param("end") Integer end);
 
-    List<UserCommentInfo> findCommentListByUserId(String user_id, Integer start, Integer end);
+    List<UserCommentInfo> findCommentListByUserId(@Param("userId")String user_id, @Param("start")Integer start,@Param("end") Integer end);
 
     int deleteCommentById(String comment_id);
 

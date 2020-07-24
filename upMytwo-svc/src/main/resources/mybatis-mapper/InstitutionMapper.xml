@@ -46,7 +46,7 @@
     <select id="findInstitutionList" resultType="com.dabai.dto.Institution.Institution">
   	select * from
   	institution
-  	limit #{0},#{1}
+  	limit #{i},#{pagesize}
   </select>
     <select id="findInstitutionInfo" resultMap="ic">
   	select i.institution_id,i.institution_name,ic.image,ic.description
@@ -54,7 +54,7 @@
   	where ic.state=1
   	and
   	ic.institution_id=i.institution_id
-  	limit #{0},#{1}
+  	limit #{start},#{end}
   </select>
     <select id="getInstitutionInfoById" resultMap="ic" parameterType="java.lang.Long">
   	select i.institution_id,i.institution_name,i.create_time,ic.image,ic.blg_image1,ic.blg_image2,ic.blg_image3,ic.description

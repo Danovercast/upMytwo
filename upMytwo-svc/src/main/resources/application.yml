@@ -7,7 +7,7 @@ spring:
   #数据库连接配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mytwo?characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/mytwo?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
     username: root
     password: root
 #dubbo配置
@@ -15,7 +15,6 @@ dubbo:
   application:
     name: hehe
   scan:
-    # 包名根据自己的实际情况写
     base-packages: com.dabai.serviceImpl
   protocol:
     port: 20881

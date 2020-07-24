@@ -77,23 +77,23 @@
     <select id="findCommentListByForumId" resultMap="commentInfo">
   		select c.comment_id,c.responser_id,c.details,c.create_time,u.username,u.image,u.gender,u.signature,u.register
 	 from comment c,user u
-  	where forum_id=#{0}
+  	where forum_id=#{forumId}
   	and
   	c.responser_id=u.user_id
   	and
   	state!=0
   	order by create_time desc
-  	limit #{1} ,#{2}
+  	limit #{start} ,#{end}
   </select>
     <select id="findCommentListByUserId" resultMap="userCommentInfo">
   	select c.comment_id,c.forum_id,u.user_id,c.details,c.create_time,u.username,f.title
   	from
   	comment c,user u,forum f
-  	where responser_id=#{0}
+  	where responser_id=#{userId}
   	and u.user_id=f.author_id
   	and c.forum_id=f.forum_id
   	and c.state!=0
-  	limit #{1},#{2}
+  	limit #{start},#{end}
   </select>
     <delete id="deleteCommentById" parameterType="java.lang.String">
     delete from comment
