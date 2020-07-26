@@ -1,0 +1,6 @@
+/upMytwo-api/target/
+!/upMytwo-api/*.iml/
+/upMytwo-svc/target/
+!/upMytwo-svc/*.iml/
+!/upMytwo-svc/.idea/
+/upMytwo-web/src/test/
