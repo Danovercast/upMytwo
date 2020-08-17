@@ -4,16 +4,19 @@ import com.dabai.dto.Privilege.Privilege;
 import api.Privilege.RolePrivilegeService;
 import api.User.UserService;
 import com.dabai.mytwo.util.JwtUtil;
+import com.dabai.mytwo.util.Md5Utils;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author dabai:
@@ -32,7 +35,7 @@ public class MytwoRealm extends AuthorizingRealm {
         String jwt = (String) arg0.getPrimaryPrincipal();
         System.out.println("查询了authorization");
         if (JwtUtil.verifyToken(jwt)) {
-            Integer roleId = (Integer) JwtUtil.parseToken(jwt).get("roleid");
+            Integer roleId = (Integer) Objects.requireNonNull(JwtUtil.parseToken(jwt)).get("roleid");
             if (roleId != null) {
                 SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
                 List<Privilege> list = rolePrivilegeService.findPrivilegesByRoleId(roleId);
@@ -48,13 +51,10 @@ public class MytwoRealm extends AuthorizingRealm {
 
     //认证
     @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken arg0) throws AuthenticationException {
-        UsernamePasswordToken passwordToken = (UsernamePasswordToken) arg0;
-        String jwt = (String) passwordToken.getPrincipal();
-        if (JwtUtil.verifyToken(jwt)) {
-            return new SimpleAuthenticationInfo(jwt, jwt, this.getName());
-        }
-        return null;
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+        String username = (String)token.getPrincipal();  //得到用户名
+        String password = new String((char[])token.getCredentials()); //得到密码
+        return new SimpleAuthenticationInfo(username, Md5Utils.toMd5(password,username,2), ByteSource.Util.bytes(username), this.getName());
     }
 
     public void setName(String name) {

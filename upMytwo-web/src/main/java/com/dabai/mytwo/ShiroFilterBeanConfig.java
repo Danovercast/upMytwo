@@ -50,10 +50,10 @@ public class ShiroFilterBeanConfig {
         map.put("/logout/**", "logout");
         map.put("/user/**", "anon");
         map.put("/manager/**", "perms[\"manager\"]");
-        map.put("/jwt/**", "jwtAuth,perms[\"normaluser\"]");
+        map.put("/jwt/**", "jwtAuth,jwtInfo,perms[\"normaluser\"]");
         map.put("/**", "anon");
         sffb.setFilterChainDefinitionMap(map);
-        Map<String, Filter>filterMap=new LinkedHashMap<>(1);
+        Map<String, Filter>filterMap=new LinkedHashMap<>(2);
         filterMap.put("jwtAuth",new JwtAuthFilter());
         filterMap.put("jwtInfo",new JwtInfoFilter());
         sffb.setFilters(filterMap);
@@ -109,9 +109,8 @@ public class ShiroFilterBeanConfig {
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
 
         hashedCredentialsMatcher.setHashAlgorithmName("MD5");// 散列算法:这里使用MD5算法;
-        hashedCredentialsMatcher.setHashIterations(1024);// 散列的次数，比如散列两次，相当于
+        hashedCredentialsMatcher.setHashIterations(2);// 散列的次数，比如散列两次，相当于
         // md5(md5(""));
-
         return hashedCredentialsMatcher;
     }
     /**

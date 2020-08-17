@@ -90,7 +90,7 @@ public class UserController {
             return map;
         }
         User checkU = userService.findUserByUsername(username);
-
+        String temppass=password;
         //执行普通的登陆逻辑
         password = Md5Utils.toMd5(password, username, 2);
         if (checkU == null || !password.equals(checkU.getPassword())) {
@@ -114,7 +114,7 @@ public class UserController {
         String jwt = JwtUtil.createToken(map);
         Subject subject = SecurityUtils.getSubject();
         map.put("data", jwt);
-        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(jwt, jwt);
+        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, temppass);
         try {
             subject.login(usernamePasswordToken);
             return map;
