@@ -29,7 +29,7 @@ public class LonginHistoryController {
     private UserService userService;
     String result = "";
 
-    @RequestMapping("user/showMyLoginHistory")
+    @RequestMapping("/user/showMyLoginHistory")
     @ResponseBody
     HashMap<String, Object> showLoginHistoryList(PageInfo pageInfo) {
         HashMap<String, Object> map = new HashMap<String, Object>();

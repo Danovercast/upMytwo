@@ -52,8 +52,6 @@ public class CommentController {
         comment.setComment_id(UUID.randomUUID().toString().replace("-", ""));
         comment.setState(1);
         if (commentService.insertComment(comment)) {
-
-
             map.put("code", 1);
             map.put("msg", "comment发布成功");
             return map;

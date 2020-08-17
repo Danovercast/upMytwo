@@ -326,9 +326,9 @@ a:hover {
 						<#else>
 						用户未设置个人介绍 </#if></p>
 						<#if forumInfo.image??>
-						<img src="../images/${forumInfo.image}" class="img-responsive img-thumbnail" alt="头像" width="304" height="236">
+						<img src="../images/$forumInfo.image" class="img-responsive img-thumbnail" alt="头像" width="304" height="236">
 						<#else>
-						<img src="../images/${forumInfo.jpg}" class="img-responsive img-thumbnail" alt="头像" width="304" height="236">
+						<img src="../images/$forumInfo.jpg" class="img-responsive img-thumbnail" alt="头像" width="304" height="236">
 </#if>
 						
 				</div>
@@ -340,13 +340,13 @@ a:hover {
 					<div class="panel panel-default" >
                         <div class="panel-body">
                             <div class="">
-                                <a th:href="../ins/${for.institution_id}" href="#" class="">
+                                <a th:href="../ins/$for.institution_id" href="#" class="">
                                     <span>学院</span>
                                 </a>
                             </div>
                             <div    >
                                 <h4 class="">
-                                   <a href="../p/${for.forum_id}">${for.title}</a>
+                                   <a href="../p/$for.forum_id">${for.title}</a>
                                 </h4>
                                 <div class="">
                                     <span>${for.create_time?string('yyyy年mm月dd日 HH时mm分ss秒')}</span>

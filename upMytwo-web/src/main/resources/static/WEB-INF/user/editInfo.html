@@ -12,9 +12,9 @@
 <link href="../css/fileinput.css" media="all" rel="stylesheet"
 	type="text/css" />
 <link rel="stylesheet" href="../css/app.css">
-<link rel="stylesheet"
+<!--<link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-	crossorigin="anonymous">
+	crossorigin="anonymous">-->
 
 
  
@@ -52,7 +52,7 @@
                         style="display: none;">
                         <li ><a id="myforuma" href="#">个人中心</a></li>
                         <li><a name="toEdit" href="">修改信息</a></li>
-                        <li><a href="../ins/${user.institution_id}">学院</a></li>
+                        <li><a href="../ins/$user.institution_id">学院</a></li>
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">其他</li>
                         <li><a   name="mycomment">我的评论</a></li>
@@ -80,7 +80,7 @@
 				<div class="row">
 
 					<div class="thumbnail">
-						<img src="../images/${user.image}" alt="...">
+						<img src="../images/$user.image" alt="...">
 						<div class="caption">
 							<h5 class="text-center text-primary">用户头像</h5>
 							<p class="text-danger text-center">
@@ -149,7 +149,7 @@
 					<div class="form-group">
 						<label for="birthday">birthday</label> <#if user.birthday??> ${user.birthday?string('yyyy年mm月dd日 HH时mm分ss秒')}
 						<#else>
-						</#if>
+
 						<div class='input-group date' id='datetimepicker1'>
                 <input type='text' class="form-control" />
                 <span class="input-group-addon">
