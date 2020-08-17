@@ -69,7 +69,9 @@
     <shiro-version>1.4.0</shiro-version>
     <jwt-token-version>0.9.1</jwt-token-version>
     <common-lang3-version>3.9</common-lang3-version>
+    <bouncycastle-version>1.58</bouncycastle-version>
   </properties>
+
 
   <developers>
     <developer>
