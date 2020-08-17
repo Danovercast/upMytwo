@@ -45,7 +45,7 @@
                         style="display: none;">
                         <li ><a href="#">个人中心</a></li>
                         <li><a name="toEdit" href="">修改信息</a></li>
-                        <li><a href="../ins/${user.institution_id}">学院</a></li>
+                        <li><a href="../ins/$user.institution_id">学院</a></li>
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">其他</li>
                         <li><a   name="mycomment">我的评论</a></li>
@@ -129,17 +129,17 @@
 
                 <article class="am-g blog-entry-article">
                     <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                        <img src="../img/${homeForum.insimg}" alt="" class="am-u-sm-12">
+                        <img src="../img/$homeForum.insimg" alt="" class="am-u-sm-12">
                     </div>
                     <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-                        <span><a href="../ins/${homeForum.insid}" class="blog-color">${homeForum.insname}&nbsp;</a></span>
+                        <span><a href="../ins/$homeForum.insid" class="blog-color">${homeForum.insname}&nbsp;</a></span>
                         <span>${homeForum.createtime?string('yyyy年mm月dd日 HH时mm分ss秒')}</span>
-                        <h1><a href="../p/${homeForum.forumid}">${homeForum.title}</a></h1>
+                        <h1><a href="../p/$homeForum.forumid">${homeForum.title}</a></h1>
                         <p> ${homeForum.description}
                         </p>
                     </div>
                 </article>
-                <#list>
+                </#list>
                     </#if>
               </div>
             </div>
@@ -148,7 +148,7 @@
         <div class="col-xs-3 div_record">
             <!-- 用户信息 -->
             <div class=" div_userinfo">
-                <img class="img-responsive img-thumbnail" src="../images/${user.image}">
+                <img class="img-responsive img-thumbnail" src="../images/$user.image">
             </div>
             <!-- 随手记录 -->
             <div class="blog-sidebar-widget blog-bor">

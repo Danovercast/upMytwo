@@ -61,14 +61,14 @@
 			 <#if list?? &&(list?size>0)>
 			<p class=''><h1 class='am-text-danger'>未查询到您的有关信息</h1></p>
 			<#else>
-			<#list list for ucommentInfo>
+			<#list list as ucommentInfo>
 			<article class="am-g blog-entry-article">
 				<div class="am-u-lg-8 am-u-md-12 am-u-sm-12 blog-entry-text">
-					<span><a href="../p/${ucommentInfo.forumid}" class="blog-color">${ucommentInfo.title}
+					<span><a href="../p/$ucommentInfo.forumid" class="blog-color">${ucommentInfo.title}
 							&nbsp;</a></span> <span>@-${ucommentInfo.uname} &nbsp;</a></span>
 					<span>${ucommentInfo.createtime?string('yyyy年mm月dd日 HH时mm分ss秒')}</span>
 					<h1>
-						<a href="../p/${ucommentInfo.forumid}">${ucommentInfo.title}</a>
+						<a href="../p/$ucommentInfo.forumid">${ucommentInfo.title}</a>
 					</h1>
 					<p>${ucommentInfo.details}</p>
 					<p>
@@ -89,9 +89,9 @@
 				<h2 class="blog-text-center blog-title">
 					<input type="hidden" value="${user.user_id}" id="userid">
 				</h2>
-				<img src="../images/${user.image}" alt="about me" class="blog-entry-img">
-				<p>$user.username</p>
-				<p>$user.signature</p>
+				<img src="../images/$user.image" alt="about me" class="blog-entry-img">
+				<p>${user.username}</p>
+				<p>${user.signature}</p>
 			</div>
 
 
