@@ -98,6 +98,11 @@
                 <artifactId>bcprov-jdk15on</artifactId>
                 <version>${bouncycastle-version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>core</artifactId>
+                <version>3.3.3</version>
+            </dependency>
         </dependencies>
     <build>
         <plugins>

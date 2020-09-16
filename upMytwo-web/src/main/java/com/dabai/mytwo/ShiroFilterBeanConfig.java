@@ -49,6 +49,7 @@ public class ShiroFilterBeanConfig {
         map.put("/ins/**", "anon");
         map.put("/logout/**", "logout");
         map.put("/user/**", "anon");
+        map.put("/mdl/**", "anon");
         map.put("/manager/**", "perms[\"manager\"]");
         map.put("/jwt/**", "jwtAuth,jwtInfo,perms[\"normaluser\"]");
         map.put("/**", "anon");

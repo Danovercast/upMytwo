@@ -44,6 +44,6 @@ public interface UserService {
 	User findUserById(String uid);
 
 	boolean authenticUser(SchoolUser su);
- 
+
 
 }

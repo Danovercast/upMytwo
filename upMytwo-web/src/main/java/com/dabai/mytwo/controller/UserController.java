@@ -1,8 +1,13 @@
 package com.dabai.mytwo.controller;
 
+import api.ResultDto;
 import com.dabai.dto.SomeInfo.*;
 import api.Comment.CommentService;
 import api.Comment.FeedBackService;
+import com.dabai.dto.jyjs.SdsxfSqdSubmitDto;
+import com.dabai.dto.util.BarCodeParamDto;
+import com.dabai.dto.util.BarCodeUtil;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.dubbo.config.annotation.DubboReference;
 import com.dabai.dto.Eassy.Essay;
 import api.Eassy.EssayService;
@@ -17,6 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,12 +32,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 
 /**
@@ -418,10 +425,23 @@ public class UserController {
         model.addAttribute("info", info);
         return "school/xiaonei";
     }
-    @RequestMapping("/hello")
-    public String hello(Map<String,Object> map){
-        map.put("name", "[Angel -- 守护天使]");
-        return "hello";
-    }
 
+    @RequestMapping("/qrCode")
+    public String qrCode(@RequestParam(value = "word") String word,Model model) {
+        BarCodeParamDto barCodeParam = new BarCodeParamDto();
+        barCodeParam.setMsg(new String(word.getBytes(StandardCharsets.UTF_8)));
+        barCodeParam.setType("QR");
+        BufferedImage bufImg;
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        try {
+            bufImg = BarCodeUtil.getCodeBufferedImage(barCodeParam);
+            ImageIO.write(bufImg, "jpeg", outputStream);
+        } catch (Exception e) {
+            return "error";
+        }
+        Base64 Base64=new Base64();
+        ResultDto.valueOfSuccess(outputStream.toByteArray());
+        model.addAttribute("picdata",Base64.encodeToString(outputStream.toByteArray()));
+        return "user/qrcode";
+    }
 }
