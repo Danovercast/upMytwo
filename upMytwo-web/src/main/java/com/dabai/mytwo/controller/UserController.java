@@ -4,10 +4,8 @@ import api.ResultDto;
 import com.dabai.dto.SomeInfo.*;
 import api.Comment.CommentService;
 import api.Comment.FeedBackService;
-import com.dabai.dto.jyjs.SdsxfSqdSubmitDto;
 import com.dabai.dto.util.BarCodeParamDto;
 import com.dabai.dto.util.BarCodeUtil;
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.dubbo.config.annotation.DubboReference;
 import com.dabai.dto.Eassy.Essay;
 import api.Eassy.EssayService;
@@ -23,7 +21,6 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.apache.tomcat.util.codec.binary.Base64;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -59,6 +56,9 @@ public class UserController {
     private EssayService essayService;
     @DubboReference
     private FeedBackService fbService;
+
+    public UserController() {
+    }
 
     // 添加用户
     @RequestMapping("base/register")
