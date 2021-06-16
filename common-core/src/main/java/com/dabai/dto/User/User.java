@@ -1,5 +1,7 @@
 package com.dabai.dto.User;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -10,22 +12,35 @@ import java.util.Date;
 
 * 类说明  用户实体类
 */
+@ApiModel(value="用户对象信息")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = -8971569712457440539L;
+	@ApiModelProperty(value="user_id" ,required=true)
 	private String user_id;
+	@ApiModelProperty(value="角色id" ,required=true)
 	private Integer role_id;
+	@ApiModelProperty(value="学院id" ,required=true)
 	private Long institution_id;
+	@ApiModelProperty(value="用户名" ,required=true)
 	private String username;
+	@ApiModelProperty(value="密码" ,required=true)
 	private String password;
+	@ApiModelProperty(value="邮箱地址" ,required=true)
 	private String email;
+	@ApiModelProperty(value="手机号" ,required=true)
 	private String telephone;
+	@ApiModelProperty(value="生日" ,required=true)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthday;
+	@ApiModelProperty(value="头像" ,required=true)
 	private String image;
+	@ApiModelProperty(value="性别" ,required=true)
 	private Integer gender;
+	@ApiModelProperty(value="个人签名" ,required=true)
 	private String signature;
 	private String activecode;
+	@ApiModelProperty(value="注册日期" ,required=true)
 	private Date register;
 	
 	public Date getRegister() {

@@ -150,7 +150,7 @@
                 if ($(validity.field).is('.js-ajax-validate')) {
                     // 异步操作必须返回 Deferred 对象
                     return $.ajax({
-                        url: 'base/checkUsername',
+                        url: '../base/checkUsername',
                         data:{"username":v},
                         // cache: false, 实际使用中请禁用缓存
                         dataType: 'json'
@@ -176,7 +176,6 @@
     	var currentpage=1;
     	var pagesize=20;
     	var pageinfo=JSON.stringify({"currentpage":currentpage,"pagesize":pagesize});
-    	console.log(pageinfo);	
 		$.ajax({
 			type:'post',
 			url:'../base/institutionList',
