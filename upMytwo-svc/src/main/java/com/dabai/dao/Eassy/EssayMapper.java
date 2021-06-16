@@ -11,7 +11,7 @@ import java.util.List;
  * <p>
  * 类说明  EssayMapper
  */
-@Mapper
+
 public interface EssayMapper {
 
     int addEssay(Essay essay);

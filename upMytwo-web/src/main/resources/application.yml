@@ -1,5 +1,5 @@
 server:
-  port: 8083
+  port: 8044
 
 dubbo:
   application:
@@ -17,3 +17,13 @@ spring:
   freemarker:
     template-loader-path: classpath:/static/WEB-INF/
     suffix: .html
+
+session:
+  type: 1
+  url: http://10.199.140.70:8080/authorize
+  client-id: wsys
+  client-secret: wsysP1235
+  redirect-url: http://10.199.140.70:8080
+  default:
+    qxswjgdm: 13100000000 # 默认权限税务机构代码
+    qxswjgmc: 国家税务总局上海市税务局 # 默认权限税务机构名称

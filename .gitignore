@@ -4,3 +4,17 @@
 !/upMytwo-svc/*.iml/
 !/upMytwo-svc/.idea/
 /upMytwo-web/src/test/
+/upMytwo-svc/.idea/
+common-core/src/main/resources/
+common-core/src/test/
+common-core/target/
+logs.home_IS_UNDEFINED/
+src/
+upMytwo-api/src/main/resources/
+upMytwo-api/src/test/
+upMytwo-svc/logs.home_IS_UNDEFINED/
+upMytwo-svc/src/test/
+upMytwo-web/logs.home_IS_UNDEFINED/
+src/test/
+/.idea/
+/.idea/
