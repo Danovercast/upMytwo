@@ -17,6 +17,7 @@
             <artifactId>common-core</artifactId>
             <version>${common-core-version}</version>
         </dependency>
+
     </dependencies>
 
 </project>

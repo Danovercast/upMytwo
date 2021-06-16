@@ -18,7 +18,7 @@ import java.util.Map;
  * 类说明
  */
 public class JwtUtil {
-    private static final String SIGNING_KEY = "altheaaway"; //自定义加密密钥SIGNING_KEY
+    private static final String SIGNING_KEY = "ImGrowUp"; //自定义加密密钥SIGNING_KEY
     //加密后的密钥
     private static byte[] signingSecretBytes = DatatypeConverter.parseBase64Binary(SIGNING_KEY); //转换成Base64编码
     private static final long EXP = 60 * 60 * 1000; //有效期为60分钟
