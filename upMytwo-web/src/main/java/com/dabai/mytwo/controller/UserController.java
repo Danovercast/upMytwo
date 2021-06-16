@@ -1,11 +1,21 @@
 package com.dabai.mytwo.controller;
 
 import api.ResultDto;
+import api.TestMultiImpl;
 import com.dabai.dto.SomeInfo.*;
 import api.Comment.CommentService;
 import api.Comment.FeedBackService;
 import com.dabai.dto.util.BarCodeParamDto;
 import com.dabai.dto.util.BarCodeUtil;
+import com.dabai.mytwo.oauth.Auth2Service;
+import com.dabai.mytwo.oauth.JsonMapperUtil;
+import com.dabai.mytwo.oauth.Token;
+import com.dabai.mytwo.oauth.UserInfo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import com.dabai.dto.Eassy.Essay;
 import api.Eassy.EssayService;
@@ -21,6 +31,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,9 +42,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -44,6 +58,8 @@ import java.util.*;
  * 类说明 userController前端控制器
  */
 @Controller
+@Slf4j
+@Api(value = "UserController|用户信息、登陆 controller")
 public class UserController {
     private String result = "";
     @DubboReference
@@ -56,6 +72,12 @@ public class UserController {
     private EssayService essayService;
     @DubboReference
     private FeedBackService fbService;
+    @Autowired
+    protected HttpServletResponse response;
+    @Autowired
+    protected HttpServletRequest request;
+    @Autowired
+    protected Auth2Service auth2Service;
 
     public UserController() {
     }
@@ -63,6 +85,13 @@ public class UserController {
     // 添加用户
     @RequestMapping("base/register")
     @ResponseBody
+    @ApiOperation(value="registerUser", notes="用户注册")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType="username", name = "username", value = "用户名", required = true, dataType = "String"),
+            @ApiImplicitParam(paramType="password", name = "password", value = "密码", required = true, dataType = "String"),
+            @ApiImplicitParam(paramType="email", name = "email", value = "邮箱", required = true, dataType = "String"),
+            @ApiImplicitParam(paramType="telephone", name = "telephone", value = "手机号", required = true, dataType = "String")
+    })
     public HashMap<String, Object> registerUser(User user, Model model) {
         HashMap<String, Object> map = new HashMap<String, Object>();
         int code = 3;
@@ -72,8 +101,6 @@ public class UserController {
         if (StringUtils.isBlank(user.getEmail()) || StringUtils.isBlank(user.getUsername()) || StringUtils.isBlank(user.getPassword())) {
             result = "邮箱和用户名,密码均不能为空，请重试";
         } else {
-
-
             user.setPassword(Md5Utils.toMd5(user.getPassword(), user.getUsername(), 2));
             if (userService.addUser(user)) {
                 code = 1;
@@ -414,6 +441,7 @@ public class UserController {
             model.addAttribute("result", result);
             return "error";
         }
+
         List<FeedBack> fblist = fbService.getNearFeedBackList();
         List<ForumInfo> flist1 = forumService.getMomentForum(1, 4);
         List<ForumInfo> flist2 = forumService.getMomentForum(2, 4);
@@ -444,4 +472,60 @@ public class UserController {
         model.addAttribute("picdata",Base64.encodeToString(outputStream.toByteArray()));
         return "user/qrcode";
     }
+
+    // 用户登录
+    @RequestMapping("/base/test")
+    @ResponseBody
+    public ResultDto letstest() throws IOException {
+        Object name1 = request.getSession().getAttribute("userInfo");
+        if(null==name1||StringUtils.isBlank((String)name1)){
+            log.error("session not have name");
+        }
+        String name = request.getParameter("name");
+        request.getSession().setAttribute("name",name);
+        return ResultDto.valueOfSuccess(name1);
+    }
+    // 用户登录
+    @RequestMapping("/base/test1")
+    public void letstes1t() throws IOException {
+        request.getSession().setAttribute("name","hello");
+        response.sendRedirect("http://127.0.0.1:8044/base/test?name=123");
+    }
+    @RequestMapping("/base/test2")
+    public void letstest2() throws IOException {
+        String code = request.getParameter("code");
+        log.error("code======{}",code);
+        Token token = auth2Service.getToken(code);
+        UserInfo session = auth2Service.getSession(token.getAccess_token());
+        log.error("===session ==={}", JsonMapperUtil.toJSONString(session));
+        request.getSession().setAttribute("userInfo",session);
+        response.sendRedirect("http://127.0.0.1:8044/base/test3");
+    }
+
+    @RequestMapping("/base/test3")
+    @ResponseBody
+    public ResultDto letstest3() throws IOException {
+
+        Object userInfo = request.getSession().getAttribute("userInfo");
+        return ResultDto.valueOfSuccess(userInfo);
+    }
+
+    @RequestMapping("/auth2/test3")
+    @ResponseBody
+    public ResultDto letstest4() throws IOException {
+
+        Object userInfo = request.getSession().getAttribute("userInfo");
+        return ResultDto.valueOfSuccess(userInfo);
+    }
+    @RequestMapping("/auth2/test4")
+    @ResponseBody
+    public void letstest5(@RequestParam String name,HttpServletResponse response) throws IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("非法请求URL参数,系统拒绝处理!");
+        log.error("name= {}, type = {}",name,name);
+        //return ResultDto.valueOfSuccess(name+"---"+type);
+    }
+
 }

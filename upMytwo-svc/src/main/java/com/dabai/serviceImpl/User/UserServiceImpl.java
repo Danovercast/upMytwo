@@ -1,5 +1,6 @@
 package com.dabai.serviceImpl.User;
 
+import api.TestMultiImpl;
 import com.dabai.dto.SomeInfo.OtherUserInfo;
 import com.dabai.dto.SomeInfo.PageInfo;
 import api.User.UserService;
@@ -19,7 +20,7 @@ import java.util.*;
  * <p>
  * 类说明 userService 实现类
  */
-@DubboService
+//@DubboService
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -27,6 +28,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private ForumMapper forumMapper;
 
+    @Autowired
+    private Map<String, TestMultiImpl> implMap;
     // 插入用户 用户id用uuid
     @Override
     public Boolean addUser(User user) {
@@ -122,8 +125,7 @@ public class UserServiceImpl implements UserService {
         map.put("start", (pageinfo.getCurrentpage() - 1) * pageinfo.getPagesize());
         map.put("end", pageinfo.getPagesize());
 
-        List<OtherUserInfo> list = userMapper.findUserList(map);
-        return list;
+        return userMapper.findUserList(map);
     }
 
     @Override
@@ -136,4 +138,8 @@ public class UserServiceImpl implements UserService {
         return userMapper.authenticSchoolUser(su) == 1;
     }
 
+    @Override
+    public HashMap<String, Object> letstest(String name) {
+        return null;
+    }
 }

@@ -9,7 +9,7 @@ import com.dabai.dto.User.User;
 import java.util.HashMap;
 import java.util.List;
 
-@Mapper
+
 public interface UserMapper {
     int insertUser(User user);
 

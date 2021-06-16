@@ -6,6 +6,7 @@ import com.dabai.dto.SomeInfo.PageInfo;
 import com.dabai.dto.User.SchoolUser;
 import com.dabai.dto.User.User;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,4 +47,5 @@ public interface UserService {
 	boolean authenticUser(SchoolUser su);
 
 
+    HashMap<String, Object> letstest(String name);
 }
